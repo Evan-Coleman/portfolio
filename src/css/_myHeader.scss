@@ -1,0 +1,36 @@
+.MyHeaderWrapper {
+  height: 1000px;
+  width: 100%;
+  background: #ebebeb;
+  padding: 0px 120px;
+  margin: 0px;
+  clip-path: polygon(100% 0, 100% 55%, 60% 70%, 0 46%, 0 0);
+
+  .Name {
+    background: #393434;
+    color: #ffffff;
+    width: 60%;
+    height: 7rem;
+    .FirstLast {
+      line-height: 1.5rem;
+      padding: 15% 0% 10% 20%;
+      text-align: start;
+    }
+  }
+
+  .Title {
+    font-size: 4rem;
+  }
+
+  .Content {
+    font-size: 0.7rem;
+  }
+
+  .ContactMeButton {
+    margin-top: 1.5rem;
+    width: 30%;
+    padding: 1%;
+    background: #24292e;
+    color: #ffffff;
+  }
+}

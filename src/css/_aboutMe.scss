@@ -1,0 +1,17 @@
+.AboutMeWrapper {
+  height: 500px;
+  width: 100%;
+  background: #ebebeb;
+  padding: 0px 120px;
+
+  .Name {
+    background: #393434;
+    color: #ffffff;
+    width: 60%;
+    height: 7rem;
+    .FirstLast {
+      padding: 10% 0% 10% 20%;
+      text-align: start;
+    }
+  }
+}
