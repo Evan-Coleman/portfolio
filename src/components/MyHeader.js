@@ -3,30 +3,28 @@ import React from "react";
 export default function MyHeader() {
   return (
     <div className="MyHeaderWrapper">
-      <div className="columns is-mobile">
-        <div className="column is-one-third">
+      <div className="row container">
+        <div className="col l2 m2 s6">
           <div className="Name">
-            <div className="FirstLast">
-              <div>Evan</div>
-              <div>Coleman</div>
-            </div>
+            <div>First</div>
+            <div>Last</div>
           </div>
         </div>
-        <div className="HeaderItem AboutMe column">About me</div>
-        <div className="HeaderItem Resume column">Resume</div>
-        <div className="HeaderItem GitHub column">GitHub</div>
-        <div className="HeaderItem Linkedin column">Linkedin</div>
-        <div className="HeaderItem Blog column">Blog</div>
+        <div className="HeaderItem AboutMe col l2 m2 s6">About me</div>
+        <div className="HeaderItem Resume col l2 m2 s6">Resume</div>
+        <div className="HeaderItem GitHub col l2 m2 s6">GitHub</div>
+        <div className="HeaderItem Linkedin col l2 m2 s6">Linkedin</div>
+        <div className="HeaderItem Blog col l2 m2 s6">Blog</div>
       </div>
 
-      <div className="columns">
-        <div className="column">
-          <img src="./img/aboutimage.png" alt="" />
+      <div className="row container">
+        <div className="col l6 m6 s12">
+          <img className="ProfileImage" src="./img/aboutimage.png" alt="" />
         </div>
-        <div className="column">
+        <div className="AboutMeSection col l6 m6 s12">
           <div className="Title">Hey there!</div>
           <div className="Subtitle">
-            My name is Evan Coleman, I'm an experienced Software Engineer
+            My name is First Last, I'm an experienced Software Engineer
           </div>
           <div className="Content">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus

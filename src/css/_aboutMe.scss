@@ -1,17 +1,19 @@
 .AboutMeWrapper {
-  height: 500px;
   width: 100%;
-  background: #ebebeb;
-  padding: 0px 120px;
+  height: 100%;
 
-  .Name {
-    background: #393434;
-    color: #ffffff;
-    width: 60%;
-    height: 7rem;
-    .FirstLast {
-      padding: 10% 0% 10% 20%;
-      text-align: start;
+  .Circle {
+    border: 20px solid #5e8cbd;
+    border-radius: 50%;
+    width: 320px;
+    height: 320px;
+    z-index: 86;
+    opacity: 0.33;
+
+    margin-top: 20%;
+    @media only screen and (min-width: 760px) {
+      margin-top: 5%;
     }
+    margin-left: -160px;
   }
 }
