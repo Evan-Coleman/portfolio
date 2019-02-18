@@ -1,6 +1,8 @@
 .AboutMeWrapper {
   width: 100%;
-  height: 100%;
+  height: 500px;
+  padding: 0px;
+  margin: 0px;
 
   .Circle {
     border: 20px solid #5e8cbd;
@@ -15,5 +17,30 @@
       margin-top: 5%;
     }
     margin-left: -160px;
+  }
+
+  .CircleWrapper {
+    margin-top: -40%;
+    margin-left: 10%;
+  }
+
+  .CircleHeader {
+    height: 50px;
+    font-size: 2rem;
+    width: 250px;
+    background: #66b0ff;
+    color: white;
+    opacity: 0.41;
+    text-align: center;
+  }
+  .CircleContent {
+    font-weight: bold;
+    font-size: 2.7rem;
+  }
+  .SideContent {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    display: flex;
   }
 }
