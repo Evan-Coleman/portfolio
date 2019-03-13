@@ -7,6 +7,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="WIP">** THIS IS A WORK IN PROGRESS **</div>
         <MyHeader />
         <AboutMe />
       </div>
