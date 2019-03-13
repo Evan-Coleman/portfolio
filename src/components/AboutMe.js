@@ -1,28 +1,25 @@
 import React from "react";
+import strings from "../res/strings";
 
 export default function AboutMe() {
   return (
-    <div className="AboutMeWrapper row">
-      <div className="col l6 m6 s12">
-        <div className="Circle" />
-        <div className="CircleWrapper">
-          <div className="CircleHeader">about me</div>
-          <div className="CircleContent">Developer,</div>
-          <div className="CircleContent">Engineer,</div>
-          <div className="CircleContent">Creator,</div>
-          <div className="CircleContent">Thinker,</div>
+    <div className="AboutMeWrapper">
+      <div className="row">
+        <div className="CircleCol col l4 m4 s12">
+          <div className="Circle" />
+          <div className="CircleText">
+            <div className="Title">{strings.aboutMe.title}</div>
+            <div className="Subtitle">{strings.aboutMe.subtitle1}</div>
+            <div className="Subtitle">{strings.aboutMe.subtitle2}</div>
+            <div className="Subtitle">{strings.aboutMe.subtitle3}</div>
+            <div className="Subtitle">{strings.aboutMe.subtitle4}</div>
+          </div>
         </div>
-      </div>
-      <div className="SideContent col l6 m6 s12">
-        <div>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum
-          nesciunt voluptatibus, consequatur et maiores velit eveniet illo
-          laudantium autem ad.
+        <div className="ContentCol col l8 m8 s12">
+          <div id="triangle-up" />
+          <div className="Content1">{strings.aboutMe.content1}</div>
           <br />
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quasi nisi
-          harum commodi tempora maiores, eos voluptatem totam eveniet possimus?
-          Veritatis pariatur suscipit porro neque qui ipsa aliquid nostrum
-          aperiam in?
+          <div className="Content2">{strings.aboutMe.content2}</div>
         </div>
       </div>
     </div>

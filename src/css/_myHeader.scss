@@ -1,3 +1,5 @@
+@import "variables";
+
 .MyHeaderWrapper {
   background: #ebebeb;
   width: 100%;
@@ -8,42 +10,52 @@
   }
 
   .Name {
-    padding: 10% 0% 10% 20%;
+    min-width: 10rem;
+    padding: 1rem 2rem;
     margin-bottom: -1.4rem;
     background: #393434;
     color: #ffffff;
+    font-family: $font-main;
+    text-align: center;
+  }
+
+  .HeaderItemContainer {
   }
 
   .HeaderItem {
-    margin-top: 1%;
-    padding-left: 5%;
+    margin-top: 1.3rem;
+    font-family: $font-secondary;
+    font-weight: bold;
     @media only screen and (max-width: 760px) {
-      padding: 10% 0% 5% 10%;
+      padding: 1rem 0rem 1rem 0.5rem;
     }
   }
 
   .ProfileImage {
-    max-width: 100%;
-    max-height: 350px;
+    max-width: 20rem;
   }
 
   .AboutMeSection {
-    min-width: 50%;
-
+    min-width: 20rem;
     .Title {
       font-size: 3rem;
       font-weight: bold;
+      font-family: $font-main;
     }
     .Subtitle {
       font-size: 1.4rem;
+      font-family: $font-secondary;
     }
     .Content {
+      padding-top: 1.2rem;
       font-size: 1rem;
+      font-family: $font-secondary;
     }
     .ContactMeButton {
-      width: 30%;
-      padding: 2%;
-      margin-top: 8%;
+      font-family: $font-secondary;
+      width: 10rem;
+      padding: 1rem;
+      margin-top: 2rem;
       background: #24292e;
       color: #ffffff;
       @media only screen and (max-width: 760px) {
