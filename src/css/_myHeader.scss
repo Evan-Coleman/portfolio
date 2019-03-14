@@ -89,11 +89,11 @@
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
       ". name . nav1 nav2 nav3 ."
-      ". profilepicture profilepicture intro intro intro ."
-      ". profilepicture profilepicture intro intro intro ."
-      ". profilepicture profilepicture intro intro intro ."
-      ". . . intro intro intro ."
-      ". . . intro intro intro .";
+      ". profilepicture profilepicture intro intro intro intro"
+      ". profilepicture profilepicture intro intro intro intro"
+      ". profilepicture profilepicture intro intro intro intro"
+      ". . . . . . ."
+      ". . . . . . .";
 
     clip-path: polygon(100% 0, 100% 84%, 64% 100%, 0 86%, 0 0);
 
@@ -106,14 +106,14 @@
       width: 100%;
     }
     .Intro {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 40em;
       padding-left: 2em;
       text-align: left;
-      .Title {
-        margin-bottom: -0.6em;
-      }
-      .Subtitle {
-        margin-bottom: -0.6em;
-      }
+
       .CtaButton {
         width: 8em;
         padding: 0.4em;
