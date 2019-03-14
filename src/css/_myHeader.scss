@@ -1,66 +1,123 @@
 @import "variables";
 
 .MyHeaderWrapper {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 3rem 2.5rem 2.5rem 2.5rem 20rem auto;
+  grid-template-areas:
+    "name"
+    "nav1"
+    "nav2"
+    "nav3"
+    "profilepicture"
+    "intro";
+  font-family: $font-secondary;
+  text-align: center;
   background: #ebebeb;
-  width: 100%;
-  height: 100%;
-  @media only screen and (min-width: 760px) {
-    clip-path: polygon(100% 0, 100% 84%, 64% 100%, 0 86%, 0 0);
-    height: 600px;
-  }
 
   .Name {
-    min-width: 10rem;
-    padding: 1rem 2rem;
-    margin-bottom: -1.4rem;
+    grid-area: name;
     background: #393434;
     color: #ffffff;
     font-family: $font-main;
-    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .HeaderItemContainer {
+  .Nav1 {
+    grid-area: nav1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Nav2 {
+    grid-area: nav2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .Nav3 {
+    grid-area: nav3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  .HeaderItem {
-    margin-top: 1.3rem;
-    font-family: $font-secondary;
-    font-weight: bold;
-    @media only screen and (max-width: 760px) {
-      padding: 1rem 0rem 1rem 0.5rem;
-    }
+  .ProfilePicture {
+    grid-area: profilepicture;
+    height: 100%;
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .ProfileImage {
-    max-width: 20rem;
-  }
+  .Intro {
+    grid-area: intro;
 
-  .AboutMeSection {
-    min-width: 20rem;
     .Title {
-      font-size: 3rem;
-      font-weight: bold;
-      font-family: $font-main;
+      font-size: 4rem;
     }
     .Subtitle {
-      font-size: 1.4rem;
-      font-family: $font-secondary;
+      font-size: 1.5rem;
     }
     .Content {
-      padding-top: 1.2rem;
-      font-size: 1rem;
-      font-family: $font-secondary;
+      font-size: 1.1rem;
     }
-    .ContactMeButton {
-      font-family: $font-secondary;
-      width: 10rem;
-      padding: 1rem;
-      margin-top: 2rem;
+
+    .Spacer {
+      height: 1.1rem;
+    }
+    .CtaButton {
+      font-size: 1.8rem;
       background: #24292e;
       color: #ffffff;
-      @media only screen and (max-width: 760px) {
+
+      margin-top: 2rem;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      ". name . nav1 nav2 nav3 ."
+      ". profilepicture profilepicture intro intro intro ."
+      ". profilepicture profilepicture intro intro intro ."
+      ". profilepicture profilepicture intro intro intro ."
+      ". . . intro intro intro ."
+      ". . . intro intro intro .";
+
+    clip-path: polygon(100% 0, 100% 84%, 64% 100%, 0 86%, 0 0);
+
+    .Nav1,
+    .Nav2,
+    .Nav3 {
+      font-size: 1.8rem;
+    }
+    .ProfilePicture {
+      width: 100%;
+    }
+    .Intro {
+      padding-left: 2em;
+      text-align: left;
+      .Title {
+        margin-bottom: -0.6em;
+      }
+      .Subtitle {
+        margin-bottom: -0.6em;
+      }
+      .CtaButton {
+        width: 8em;
+        padding: 0.4em;
         text-align: center;
-        width: 100%;
       }
     }
   }

@@ -1,6 +1,4 @@
 .AboutMeWrapper {
-  padding-top: 5rem;
-
   .CircleCol {
     display: grid;
     grid-row: 1;
@@ -10,24 +8,19 @@
     .Circle {
       grid-column: 1;
       grid-row: 1;
-      margin-left: -15rem;
     }
 
     .Circle {
-      border: 20px solid #5e8cbd54;
+      border: 35px solid #5e8cbd54;
       border-radius: 50%;
       width: 29rem;
       height: 29rem;
 
       @media only screen and (min-width: 760px) {
-        margin-top: 5%;
       }
     }
 
     .CircleText {
-      margin-top: 6rem;
-      margin-left: 3rem;
-
       .Title {
         height: 5rem;
         width: 15rem;
@@ -49,35 +42,8 @@
   }
 
   .ContentCol {
-    padding-top: 10rem;
-    @media only screen and (min-width: 500px) {
-      padding-left: 8rem;
+    @media only screen and (max-width: 750px) {
     }
     font-size: 1.3rem;
-  }
-
-  .CircleWrapper {
-    margin-top: -40%;
-    margin-left: 10%;
-  }
-
-  .CircleHeader {
-    height: 50px;
-    font-size: 2rem;
-    width: 250px;
-    background: #66b0ff;
-    color: white;
-    opacity: 0.41;
-    text-align: center;
-  }
-  .CircleContent {
-    font-weight: bold;
-    font-size: 2.7rem;
-  }
-  .SideContent {
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    display: flex;
   }
 }

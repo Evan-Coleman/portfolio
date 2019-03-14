@@ -16,11 +16,12 @@ const strings = {
     },
     aboutMe: {
       title: "Hey there!",
-      subtitle: `My name is ${first} ${last}; I\'m an experienced Software Engineer`,
+      subtitle: `My name is ${first} ${last}; I'm an experienced Software Engineer`,
       content:
         "I'm from Washington and really enjoy coding and learning all kinds of new stuff!",
       contactButton: "Contact Me"
-    }
+    },
+    profilePicturePlaceholder: "Profile Picture"
   },
   aboutMe: {
     title: "about me",

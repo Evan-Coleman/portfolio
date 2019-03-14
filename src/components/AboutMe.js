@@ -5,7 +5,7 @@ export default function AboutMe() {
   return (
     <div className="AboutMeWrapper">
       <div className="row">
-        <div className="CircleCol col l4 m4 s12">
+        <div className="CircleCol">
           <div className="Circle" />
           <div className="CircleText">
             <div className="Title">{strings.aboutMe.title}</div>
@@ -15,7 +15,7 @@ export default function AboutMe() {
             <div className="Subtitle">{strings.aboutMe.subtitle4}</div>
           </div>
         </div>
-        <div className="ContentCol col l8 m8 s12">
+        <div className="ContentCol">
           <div id="triangle-up" />
           <div className="Content1">{strings.aboutMe.content1}</div>
           <br />
