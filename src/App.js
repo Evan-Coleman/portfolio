@@ -9,7 +9,8 @@ class App extends Component {
       <div className="App">
         <div className="WIP">** THIS IS A WORK IN PROGRESS **</div>
         <MyHeader />
-        {/* <AboutMe /> */}
+        <div className="GSpacer" />
+        <AboutMe />
       </div>
     );
   }

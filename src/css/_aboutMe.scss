@@ -1,49 +1,78 @@
+@import "variables";
+
 .AboutMeWrapper {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-rows: 1fr 1fr 1em;
+  grid-template-areas:
+    "circle circle circle"
+    "circle circle circle"
+    ". content .";
+  font-family: $font-secondary;
+
   .CircleCol {
-    display: grid;
-    grid-row: 1;
-    grid-column: 1;
+    grid-area: circle;
 
-    .CircleText,
-    .Circle {
-      grid-column: 1;
-      grid-row: 1;
-    }
+    .CircleContainer {
+      display: grid;
 
-    .Circle {
-      border: 35px solid #5e8cbd54;
-      border-radius: 50%;
-      width: 29rem;
-      height: 29rem;
-
-      @media only screen and (min-width: 760px) {
+      .CircleText,
+      .Circle {
+        grid-column: 1;
+        grid-row: 1;
       }
-    }
 
-    .CircleText {
-      .Title {
-        height: 5rem;
-        width: 15rem;
-
-        -ms-transform: rotate(-3deg); /* IE 9 */
-        -webkit-transform: rotate(-3deg); /* Safari */
-        transform: rotate(-3deg);
-        background: #5e8cbdd4;
-        color: white;
-        font-size: 2.7rem;
-        text-align: center;
+      .Circle {
+        border: 35px solid #5e8cbd54;
+        border-radius: 50%;
+        width: 29rem;
+        height: 29rem;
+        margin-left: -22em;
       }
-      .Subtitle {
-        font-size: 3.5rem;
-        line-height: 3.5rem;
-        font-weight: bolder;
+
+      .CircleText {
+        margin-top: 6em;
+        margin-left: 3em;
+
+        .Title {
+          height: 1.7em;
+          width: 6em;
+          font-family: $font-main;
+
+          -ms-transform: rotate(-3deg); /* IE 9 */
+          -webkit-transform: rotate(-3deg); /* Safari */
+          transform: rotate(-3deg);
+          background: #5e8cbdd4;
+          color: white;
+          font-size: 2.7rem;
+          text-align: center;
+        }
+        .Subtitle {
+          font-family: $font-alternate;
+          font-size: 3.5rem;
+          line-height: 3.5rem;
+          font-weight: bolder;
+        }
       }
     }
   }
 
-  .ContentCol {
-    @media only screen and (max-width: 750px) {
+  .Content {
+    grid-area: content;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: 1fr 43em 1fr;
+    grid-template-rows: 1fr 20em 1fr;
+    grid-template-areas:
+      "circle . ."
+      "circle content ."
+      "circle . .";
+
+    .Content {
+      padding-left: 8em;
     }
-    font-size: 1.3rem;
   }
 }
