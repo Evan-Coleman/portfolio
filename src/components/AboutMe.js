@@ -18,7 +18,6 @@ export default function AboutMe() {
       </div>
 
       <div className="Content">
-        <div id="triangle-up" />
         <div className="Content1">{strings.aboutMe.content1}</div>
         <br />
         <div className="Content2">
