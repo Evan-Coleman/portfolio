@@ -5,12 +5,13 @@
   padding: 0;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 3rem 2.5rem 2.5rem 2.5rem 20rem auto;
+  grid-template-rows: 3rem 2.5rem 2.5rem 2.5rem 2.5rem 20rem auto;
   grid-template-areas:
     "name"
     "nav1"
     "nav2"
     "nav3"
+    "nav4"
     "profilepicture"
     "intro";
   font-family: $font-secondary;
@@ -30,7 +31,8 @@
 
   .Nav1,
   .Nav2,
-  .Nav3 {
+  .Nav3,
+  .Nav4 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -51,6 +53,9 @@
   }
   .Nav3 {
     grid-area: nav3;
+  }
+  .Nav4 {
+    grid-area: nav4;
   }
 
   .ProfilePicture {
@@ -93,10 +98,10 @@
   }
 
   @media only screen and (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-areas:
-      ". name . nav1 nav2 nav3 ."
+      ". name . nav1 nav2 nav3 nav4"
       ". profilepicture profilepicture intro intro intro intro"
       ". profilepicture profilepicture intro intro intro intro"
       ". profilepicture profilepicture intro intro intro intro"
@@ -107,7 +112,8 @@
 
     .Nav1,
     .Nav2,
-    .Nav3 {
+    .Nav3,
+    .Nav4 {
       font-size: 1.8rem;
     }
     .ProfilePicture {

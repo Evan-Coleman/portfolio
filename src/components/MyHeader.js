@@ -10,13 +10,16 @@ export default function MyHeader() {
       <div className="Name">
         {strings.myheader.name.first} {strings.myheader.name.last}
       </div>
-      <Link className="Nav1" to="/resume">
+      <Link className="Nav1" to="/">
+        {strings.myheader.navbar.home}
+      </Link>
+      <Link className="Nav2" to="/resume">
         {strings.myheader.navbar.resume}
       </Link>
-      <a className="Nav2" href={urls.github}>
+      <a className="Nav3" href={urls.github}>
         {strings.myheader.navbar.github}
       </a>
-      <a className="Nav3" href={urls.linkedin}>
+      <a className="Nav4" href={urls.linkedin}>
         {strings.myheader.navbar.linkedin}
       </a>
       <img

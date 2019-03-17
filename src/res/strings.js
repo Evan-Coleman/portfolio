@@ -9,6 +9,7 @@ const strings = {
     },
     navbar: {
       aboutMe: "About me",
+      home: "Home",
       resume: "Resume",
       github: "Github",
       linkedin: "Linkedin",
