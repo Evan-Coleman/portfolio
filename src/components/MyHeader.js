@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import strings from "../res/strings";
 import images from "../res/images";
 
@@ -9,7 +10,9 @@ export default function MyHeader() {
         {strings.header.name.first} {strings.header.name.last}
       </div>
       <div className="Nav1">{strings.header.navBar.resume}</div>
-      <div className="Nav2">{strings.header.navBar.github}</div>
+      <Link className="Nav2" to="https://github.com/evan-coleman">
+        {strings.header.navBar.github}
+      </Link>
       <div className="Nav3">{strings.header.navBar.linkedin}</div>
       <img
         className="ProfilePicture"
