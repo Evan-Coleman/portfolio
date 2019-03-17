@@ -10,10 +10,12 @@ export default function MyHeader() {
         {strings.header.name.first} {strings.header.name.last}
       </div>
       <div className="Nav1">{strings.header.navBar.resume}</div>
-      <Link className="Nav2" to="https://github.com/evan-coleman">
+      <a className="Nav2" href="https://github.com/evan-coleman">
         {strings.header.navBar.github}
-      </Link>
-      <div className="Nav3">{strings.header.navBar.linkedin}</div>
+      </a>
+      <a className="Nav3" href="https://www.linkedin.com/in/evan-coleman/">
+        {strings.header.navBar.linkedin}
+      </a>
       <img
         className="ProfilePicture"
         src={images.header.profileImage}

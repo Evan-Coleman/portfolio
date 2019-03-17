@@ -28,26 +28,29 @@
     justify-content: center;
   }
 
-  .Nav1 {
-    grid-area: nav1;
-
+  .Nav1,
+  .Nav2,
+  .Nav3 {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .Nav1 {
+    grid-area: nav1;
   }
   .Nav2 {
     grid-area: nav2;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
   .Nav3 {
     grid-area: nav3;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .ProfilePicture {
