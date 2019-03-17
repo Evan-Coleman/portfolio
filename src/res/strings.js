@@ -2,28 +2,28 @@ var first = "Evan";
 var last = "Coleman";
 
 const strings = {
-  header: {
+  myheader: {
     name: {
       first: first,
       last: last
     },
-    navBar: {
+    navbar: {
       aboutMe: "About me",
       resume: "Resume",
       github: "Github",
       linkedin: "Linkedin",
       blog: "Blog"
     },
-    aboutMe: {
+    aboutme: {
       title: "Hey there!",
       subtitle: `My name is ${first} ${last}; I'm an experienced Software Engineer`,
       content:
         "I'm from Washington and really enjoy coding and learning all kinds of new stuff!",
-      contactButton: "Contact Me"
+      contactbutton: "Contact Me"
     },
-    profilePicturePlaceholder: "Profile Picture"
+    profilepictureplaceholder: "Profile Picture"
   },
-  aboutMe: {
+  myaboutme: {
     title: "about me",
     subtitle1: "Developer,",
     subtitle2: "Engineer,",
@@ -34,6 +34,13 @@ const strings = {
       "It was a tough project to take on solo, but probably the most rewarding " +
       "experience I've had",
     content2: "In my free time, I like to hike, watch movies, and code."
+  },
+  myfooter: {
+    designedby: "Designed by Eddie Colon",
+    projectgithub: "Github for this project!"
+  },
+  notfound: {
+    title: "Page Does Not Exist!"
   }
 };
 

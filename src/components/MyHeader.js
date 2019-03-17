@@ -2,33 +2,36 @@ import React from "react";
 import { Link } from "react-router-dom";
 import strings from "../res/strings";
 import images from "../res/images";
+import urls from "../res/urls";
 
 export default function MyHeader() {
   return (
     <div className="MyHeaderWrapper">
       <div className="Name">
-        {strings.header.name.first} {strings.header.name.last}
+        {strings.myheader.name.first} {strings.myheader.name.last}
       </div>
-      <div className="Nav1">{strings.header.navBar.resume}</div>
-      <a className="Nav2" href="https://github.com/evan-coleman">
-        {strings.header.navBar.github}
+      <div className="Nav1">{strings.myheader.navbar.resume}</div>
+      <a className="Nav2" href={urls.github}>
+        {strings.myheader.navbar.github}
       </a>
-      <a className="Nav3" href="https://www.linkedin.com/in/evan-coleman/">
-        {strings.header.navBar.linkedin}
+      <a className="Nav3" href={urls.linkedin}>
+        {strings.myheader.navbar.linkedin}
       </a>
       <img
         className="ProfilePicture"
         src={images.header.profileImage}
-        alt={strings.header.profilePicturePlaceholder}
+        alt={strings.myheader.profilePicturePlaceholder}
       />
       <div className="Intro">
-        <div className="Title">{strings.header.aboutMe.title}</div>
+        <div className="Title">{strings.myheader.aboutme.title}</div>
         <br />
-        <div className="Subtitle">{strings.header.aboutMe.subtitle}</div>
+        <div className="Subtitle">{strings.myheader.aboutme.subtitle}</div>
         <div className="Spacer" />
-        <span className="Content">{strings.header.aboutMe.content}</span>
+        <span className="Content">{strings.myheader.aboutme.content}</span>
 
-        <div className="CtaButton">{strings.header.aboutMe.contactButton}</div>
+        <div className="CtaButton">
+          {strings.myheader.aboutme.contactbutton}
+        </div>
       </div>
     </div>
   );

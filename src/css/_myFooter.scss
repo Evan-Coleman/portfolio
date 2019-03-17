@@ -1,0 +1,39 @@
+@import "variables";
+
+.MyFooterWrapper {
+  margin-top: 2em;
+  padding: 2em 1em;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "design" "links";
+  font-family: $font-secondary;
+  text-align: center;
+  background: #ebebeb;
+
+  .Design,
+  .Links {
+    margin: 1em 0;
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      transform: translateY(-0.1em);
+    }
+  }
+
+  .Design {
+    grid-area: design;
+  }
+
+  .Links {
+    grid-area: links;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". design links .";
+  }
+}

@@ -5,9 +5,8 @@
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 5fr 1fr;
-  grid-template-rows: 1fr 1fr 1em;
+  grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    "circle circle circle"
     "circle circle circle"
     ". content .";
   font-family: $font-secondary;
