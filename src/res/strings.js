@@ -50,6 +50,10 @@ const strings = {
   },
   notfound: {
     title: "Page Does Not Exist!"
+  },
+  mypdfviewer: {
+    download: "DOWNLOAD",
+    filename: "Evan_Coleman_Resume.pdf"
   }
 };
 

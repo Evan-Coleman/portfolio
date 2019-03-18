@@ -2,6 +2,7 @@ import React from "react";
 import { Document, Page } from "react-pdf";
 import urls from "../res/urls";
 import { pdfjs } from "react-pdf";
+import strings from "../res/strings";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${
   pdfjs.version
 }/pdf.worker.js`;
@@ -25,6 +26,13 @@ export default function MyPdfViewer() {
             renderAnnotationLayer={false}
           />
         </Document>
+        <a
+          className="DownloadButton"
+          download={strings.mypdfviewer.filename}
+          href={urls.resumepdf}
+        >
+          {strings.mypdfviewer.download}
+        </a>
       </div>
     </div>
   );

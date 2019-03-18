@@ -6,6 +6,24 @@
     flex-direction: column;
     align-items: center;
 
+    .DownloadButton {
+      text-decoration: none;
+      font-size: 1.8rem;
+      margin-top: 2em;
+      padding: 0.5em;
+      text-align: center;
+      width: 9em;
+      font-size: 1.8rem;
+      background: #24292e;
+      color: #ffffff;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        font-size: 2rem;
+        background: lighten(#24292e, 10%);
+      }
+    }
+
     @media only screen and (max-width: 1024px) {
       .react-pdf__Document {
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
