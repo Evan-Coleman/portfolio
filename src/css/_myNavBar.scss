@@ -1,0 +1,91 @@
+@import "variables";
+
+.MyNavBarWrapper {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 4rem 3rem 3rem 3rem 3rem;
+  grid-template-areas:
+    "name"
+    "nav1"
+    "nav2"
+    "nav3"
+    "nav4";
+  font-family: $font-secondary;
+  text-align: center;
+  background: #ebebeb;
+
+  .Name {
+    grid-area: name;
+    background: #393434;
+    color: #ffffff;
+    font-family: $font-main;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Nav1,
+  .Nav2,
+  .Nav3,
+  .Nav4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    color: black;
+    font-size: 1.5em;
+
+    &:hover {
+      font-size: 2.1em;
+    }
+  }
+
+  .Nav1 {
+    grid-area: nav1;
+  }
+  .Nav2 {
+    grid-area: nav2;
+  }
+  .Nav3 {
+    grid-area: nav3;
+  }
+  .Nav4 {
+    grid-area: nav4;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    grid-template-columns: 1fr 13em 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 5rem;
+    grid-template-areas: ". name . nav1 nav2 nav3 nav4";
+
+    .Nav1,
+    .Nav2,
+    .Nav3,
+    .Nav4 {
+      font-size: 1.8rem;
+    }
+    .ProfilePicture {
+      width: 100%;
+    }
+    .Intro {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      max-width: 40em;
+      padding-left: 2em;
+      text-align: left;
+
+      .CtaButton {
+        width: 8em;
+        padding: 0.4em;
+        text-align: center;
+        box-shadow: #24292e;
+      }
+    }
+  }
+}

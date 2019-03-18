@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import "./css/App.scss";
 import Routes from "./Routes";
 import MyFooter from "./components/MyFooter";
-import MyHeader from "./components/MyHeader";
+import MyNavBar from "./components/MyNavBar";
 
 class App extends Component {
   render() {
@@ -11,7 +11,7 @@ class App extends Component {
       <HashRouter forceRefresh>
         <div className="App">
           <div className="WIP">** THIS IS A WORK IN PROGRESS **</div>
-          <MyHeader />
+          <MyNavBar />
           <Routes />
           <MyFooter />
         </div>

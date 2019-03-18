@@ -2,26 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import strings from "../res/strings";
 import images from "../res/images";
-import urls from "../res/urls";
 
 export default function MyHeader() {
   return (
     <div className="MyHeaderWrapper">
-      <div className="Name">
-        {strings.myheader.name.first} {strings.myheader.name.last}
-      </div>
-      <Link className="Nav1" to="/">
-        {strings.myheader.navbar.home}
-      </Link>
-      <Link className="Nav2" to="/resume">
-        {strings.myheader.navbar.resume}
-      </Link>
-      <a className="Nav3" href={urls.github}>
-        {strings.myheader.navbar.github}
-      </a>
-      <a className="Nav4" href={urls.linkedin}>
-        {strings.myheader.navbar.linkedin}
-      </a>
       <img
         className="ProfilePicture"
         src={images.header.profileImage}
@@ -35,7 +19,9 @@ export default function MyHeader() {
         <span className="Content">{strings.myheader.aboutme.content}</span>
 
         <div className="CtaButton">
-          {strings.myheader.aboutme.contactbutton}
+          <a className="CtaButton" href={strings.myheader.email}>
+            {strings.myheader.aboutme.contactbutton}
+          </a>
         </div>
       </div>
     </div>

@@ -2,19 +2,20 @@ var first = "Evan";
 var last = "Coleman";
 
 const strings = {
-  myheader: {
+  navbar: {
+    aboutMe: "About me",
+    home: "Home",
+    resume: "Resume",
+    github: "Github",
+    linkedin: "Linkedin",
+    blog: "Blog",
     name: {
       first: first,
       last: last
-    },
-    navbar: {
-      aboutMe: "About me",
-      home: "Home",
-      resume: "Resume",
-      github: "Github",
-      linkedin: "Linkedin",
-      blog: "Blog"
-    },
+    }
+  },
+  myheader: {
+    email: "mailto:evancoleman00@gmail.com",
     aboutme: {
       title: "Hey there!",
       subtitle: `My name is ${first} ${last}; I'm an experienced Software Engineer`,
