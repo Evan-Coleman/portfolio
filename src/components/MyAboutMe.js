@@ -20,15 +20,7 @@ export default function MyAboutMe() {
       <div className="Content">
         <div className="Content1">{strings.myaboutme.content1}</div>
         <br />
-        <div className="Content2">
-          {strings.myaboutme.content2}
-          {strings.myaboutme.content2}
-          {strings.myaboutme.content2}
-          {strings.myaboutme.content2}
-          {strings.myaboutme.content2}
-          {strings.myaboutme.content2}
-          {strings.myaboutme.content2}
-        </div>
+        <div className="Content2">{strings.myaboutme.content2}</div>
       </div>
     </div>
   );

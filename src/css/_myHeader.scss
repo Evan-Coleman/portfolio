@@ -4,11 +4,11 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: 1fr 20fr 1fr;
   grid-template-rows: 20rem auto;
   grid-template-areas:
-    "profilepicture"
-    "intro";
+    "profilepicture profilepicture profilepicture"
+    ". intro .";
   font-family: $font-secondary;
   text-align: center;
   background: #ebebeb;
@@ -47,6 +47,7 @@
       text-decoration: none;
 
       &:hover {
+        transform: scale(1.1);
         background: lighten(#24292e, 10%);
       }
     }

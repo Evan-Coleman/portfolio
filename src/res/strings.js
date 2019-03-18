@@ -35,11 +35,18 @@ const strings = {
       "Currently, my favorite project to-date is a 3rd party API integration. " +
       "It was a tough project to take on solo, but probably the most rewarding " +
       "experience I've had",
-    content2: "In my free time, I like to hike, watch movies, and code."
+    content2:
+      "In my free time, I like to hike, watch movies, and code. " +
+      "The two personal projects I'm most proud of right now are both my " +
+      "mobile app (Weigh) which you can find on my github, " +
+      "and a website I made for a local non-profit " +
+      "here in Pocatello called Solarize Pocatello " +
+      "( https://SolarizePocatello.org/ ), they are both projects " +
+      "that I took on for fun, and ended up learning a ton!"
   },
   myfooter: {
-    designedby: "Designed by Eddie Colon",
-    projectgithub: "Github for this project!"
+    designedby: "Site design by Eddie Colon",
+    projectgithub: "Github for this website!"
   },
   notfound: {
     title: "Page Does Not Exist!"
