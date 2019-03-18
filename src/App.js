@@ -10,7 +10,6 @@ class App extends Component {
     return (
       <HashRouter forceRefresh>
         <div className="App">
-          <div className="WIP">** THIS IS A WORK IN PROGRESS **</div>
           <MyNavBar />
           <Routes />
           <MyFooter />

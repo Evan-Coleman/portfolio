@@ -6,15 +6,14 @@ Will act both as a living resume, and as a little development and or life blog.
 
 ### `TODO`
 
+    #NavBar
+        - Done
+
     #Header
-        - Turn Navbar into links
-        - Add email link to Contact button
-        - Content
+        - Done
 
     #AboutMe
         - Triangle!
-        - Style Content
-        - Content
 
     #Blog
         - Start it!
