@@ -1,6 +1,6 @@
 const images = {
   header: {
-    profileImage: require("../images/profile_picture.jpg")
+    profileImage: require("./images/profile_picture.jpg")
   }
 };
 

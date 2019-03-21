@@ -12,7 +12,7 @@ export default function MyFooter() {
       </div>
 
       <div className="Links">
-        <a className="Links" href={urls.projecturl}>
+        <a className="Links" href={urls.projectURL}>
           {strings.myfooter.projectgithub}
         </a>
       </div>

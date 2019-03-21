@@ -16,7 +16,7 @@ export default function MyPdfViewer() {
   return (
     <div className="MyPdfViewerWrapper">
       <div className="Container">
-        <Document file={urls.resumepdf}>
+        <Document file={urls.resumePDF}>
           <Page
             options={options}
             key={1}
@@ -29,7 +29,7 @@ export default function MyPdfViewer() {
         <a
           className="DownloadButton"
           download={strings.mypdfviewer.filename}
-          href={urls.resumepdf}
+          href={urls.resumePDF}
         >
           {strings.mypdfviewer.download}
         </a>
