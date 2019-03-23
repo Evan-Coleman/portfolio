@@ -16,7 +16,6 @@ export default class MyProjects extends Component {
       .then(response => {
         const projects = response.data;
         this.setState({ projects });
-        console.log(projects);
       })
       .catch(error => {
         console.log("An error occurred:", error);
