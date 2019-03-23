@@ -5,7 +5,8 @@ const urls = {
   projectURL: "https://github.com/Evan-Coleman/portfolio",
   resumePDF: "./Evan_Coleman_Resume.pdf",
 
-  gitubRepoApi: "https://api.github.com/users/Evan-Coleman/repos"
+  gitubRepoApi:
+    "https://api.github.com/users/Evan-Coleman/repos?q=&sort=updated"
 };
 
 export default urls;

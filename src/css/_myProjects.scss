@@ -1,5 +1,92 @@
 .MyProjectsWrapper {
-  background: black;
-  color: white;
-  height: 500px;
+  margin: 0 0 0rem 0;
+  padding: 5rem 0 5rem 0;
+  font-family: $font-secondary;
+  text-align: center;
+  background: #00346b8c;
+
+  .Title {
+    padding: 0 0 0 0;
+
+    font-family: $font-alternate;
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  .Subtitle {
+    font-family: $font-alternate;
+    font-size: 1.1rem;
+    font-weight: bolder;
+  }
+
+  .ProjectContainer {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .Project {
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+      width: 80%;
+      padding: 1rem;
+      margin: 1rem 0 1rem 0;
+      text-align: center;
+      background: white;
+      text-decoration: none;
+      color: black;
+
+      &:hover {
+        transition: all 0.3s ease-in-out;
+        transform: scale(1.1);
+        cursor: hand;
+        cursor: pointer;
+      }
+
+      .ProjectTitle {
+        font-size: 2.5rem;
+        font-family: $font-secondary;
+      }
+      .ProjectSubtitle {
+        font-size: 1.7rem;
+      }
+      .ProjectLink {
+        position: absolute;
+        top: 0;
+        left: 0;
+        text-decoration: none;
+        z-index: 10;
+        background-color: white;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    margin: 0 0 10rem 0;
+    padding: 0;
+    height: 50em;
+    -webkit-clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
+    clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
+
+    .Title {
+      padding: 10rem 0 0 0;
+      font-size: 5rem;
+    }
+    .Subtitle {
+      font-size: 2rem;
+    }
+
+    .ProjectContainer {
+      flex-direction: row;
+
+      .Project {
+        width: 26%;
+        max-width: 20rem;
+        margin: 0 1rem 0 1rem;
+      }
+    }
+  }
 }

@@ -54,6 +54,10 @@ const strings = {
   mypdfviewer: {
     download: "DOWNLOAD",
     filename: "Evan_Coleman_Resume.pdf"
+  },
+  myprojects: {
+    title: "GITHUB PROJECTS",
+    subtitle: "Three repos with the latest commits"
   }
 };
 

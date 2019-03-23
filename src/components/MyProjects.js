@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import urls from "../res/urls";
+import strings from "../res/strings";
 
 export default class MyProjects extends Component {
   state = {
@@ -25,14 +26,21 @@ export default class MyProjects extends Component {
   render() {
     return (
       <div className="MyProjectsWrapper">
-        <div>HI</div>
-        {this.state.projects.map(project => {
-          return (
-            <div key={project.id} className="">
-              HERE: {project.url}
-            </div>
-          );
-        })}
+        <div className="Title">{strings.myprojects.title}</div>
+        <div className="Subtitle">{strings.myprojects.subtitle}</div>
+        <div className="ProjectContainer">
+          {this.state.projects.slice(0, 3).map(project => {
+            return (
+              <div className="Project" key={project.id}>
+                <div className="ProjectTitle">{project.name}</div>
+                <div className="ProjectSubtitle">{project.language}</div>
+                <a href={project.html_url} className="ProjectLink">
+                  {project.name}
+                </a>
+              </div>
+            );
+          })}
+        </div>
       </div>
     );
   }
