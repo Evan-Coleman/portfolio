@@ -3,11 +3,6 @@ import urls from "../res/urls";
 import strings from "../res/strings";
 import images from "../res/images";
 
-const options = {
-  cMapUrl: "cmaps/",
-  cMapPacked: true
-};
-
 export default function MyPdfViewer() {
   return (
     <div className="MyPdfViewerWrapper">
