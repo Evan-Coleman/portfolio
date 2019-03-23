@@ -65,6 +65,45 @@ const strings = {
       "A repo to help me track my learning of the new systems programming language Rust!",
     weightext: "My weight loss mobile app",
     defaultprojecttext: "A project I haven't written a description for yet!"
+  },
+  myskills: {
+    title: "Skills",
+    skill1: {
+      title: "COMMUNICATION",
+      content:
+        "I believe communication is the most important skill " +
+        "to have in tech and the professional world in general. " +
+        "In my work at Farm Bureau, I have had to communicate with " +
+        "team members, customers, business owners, and representatives " +
+        "from other companies. Not only am I able to effectively " +
+        "and succinctly " +
+        "convey all information that is needed for a mutually beneficial " +
+        "interaction, but I can do it in a way which forges great business " +
+        "relationships"
+    },
+    skill2: {
+      title: "LEARNING",
+      content:
+        "I have an eagerness and excitement for learning new " +
+        "tech. I definitely have a thirst for knowledge which won't " +
+        "likely ever be quenched. My ideal learning environment is " +
+        "one where I'm able to make something. Hands on experience " +
+        "allows me to really concrete an idea into my head due " +
+        "to the fact that I'll likely have many small failures " +
+        "along the way. I believe failure is THE crucial step to " +
+        "really learning something."
+    },
+    skill3: {
+      title: "TECHNICAL",
+      content:
+        "LANGUAGES\n" +
+        "C#, Java, JavaScript, Gosu, SQL\n" +
+        "\nVARIOUS TECH AND TOOLS\n" +
+        "Git, Hibernate, Xamarin, .NET, RESTful APIs, React, " +
+        "MongoDB, HTML, CSS, Node.js\n" +
+        "\nINDUSTRIES\n" +
+        "Insurance, Mobile Development, Full-Stack Web Development"
+    }
   }
 };
 

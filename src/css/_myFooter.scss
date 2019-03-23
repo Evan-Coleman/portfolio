@@ -8,14 +8,14 @@
   grid-template-areas: "design" "links";
   font-family: $font-secondary;
   text-align: center;
-  background: #ebebeb;
+  background: #24292e;
 
   .Design,
   .Links {
     margin: 1em 0;
     font-size: 1.6rem;
     text-decoration: none;
-    color: black;
+    color: white;
 
     &:hover {
       transform: translateY(-0.1em);

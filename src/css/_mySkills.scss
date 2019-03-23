@@ -1,0 +1,47 @@
+.MySkillsWrapper {
+  margin: 3em 0;
+
+  .Title {
+    font-size: 3em;
+    font-family: $font-secondary;
+    text-align: center;
+    background: #24292e;
+    color: white;
+  }
+
+  .MySkill {
+    margin-top: 2em;
+    background: #ebebeb;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2em 1em;
+
+    .SkillTitle {
+      font-family: $font-secondary;
+      font-size: 2em;
+      font-weight: bolder;
+    }
+    .SkillContent {
+      font-family: $font-main;
+      font-size: 1.2em;
+      white-space: pre-line;
+    }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    margin-bottom: 8em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Title {
+      width: 10em;
+      margin-bottom: 1em;
+    }
+    .MySkill {
+      width: 70%;
+    }
+  }
+}
