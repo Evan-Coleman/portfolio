@@ -57,7 +57,8 @@ const strings = {
   },
   myprojects: {
     title: "GITHUB PROJECTS",
-    subtitle: "Three repos with the latest commits"
+    subtitle: "Three repos with the latest commits",
+    viewbutton: "VIEW"
   }
 };
 

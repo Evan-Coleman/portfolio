@@ -35,7 +35,7 @@ export default class MyProjects extends Component {
                 <div className="ProjectTitle">{project.name}</div>
                 <div className="ProjectSubtitle">{project.language}</div>
                 <a href={project.html_url} className="ProjectLink">
-                  {project.name}
+                  {strings.myprojects.viewbutton}
                 </a>
               </div>
             );
