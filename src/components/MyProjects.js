@@ -33,6 +33,7 @@ export default class MyProjects extends Component {
               <div className="Project" key={project.id}>
                 <div className="ProjectTitle">{project.name}</div>
                 <div className="ProjectSubtitle">{project.language}</div>
+                <div className="ProjectTime">{project.updated_at}</div>
                 <a href={project.html_url} className="ProjectLink">
                   {strings.myprojects.viewbutton}
                 </a>

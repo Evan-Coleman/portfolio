@@ -55,12 +55,11 @@
 
   @media only screen and (min-width: 1024px) {
     grid-template-columns: 1fr 13em 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-areas:
       ". profilepicture profilepicture intro intro intro intro"
       ". profilepicture profilepicture intro intro intro intro"
       ". profilepicture profilepicture intro intro intro intro"
-      ". . . . . . ."
       ". . . . . . .";
 
     clip-path: polygon(100% 0, 100% 84%, 64% 100%, 0 86%, 0 0);
