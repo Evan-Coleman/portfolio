@@ -58,7 +58,13 @@ const strings = {
   myprojects: {
     title: "GITHUB PROJECTS",
     subtitle: "Three repos with the latest commits",
-    viewbutton: "VIEW"
+    updatedat: "Last Commit: ",
+    viewbutton: "VIEW",
+    portfoliotext: "My personal portfolio website",
+    rusttext:
+      "A repo to help me track my learning of the new systems programming language Rust!",
+    weightext: "My weight loss mobile app",
+    defaultprojecttext: "A project I haven't written a description for yet!"
   }
 };
 

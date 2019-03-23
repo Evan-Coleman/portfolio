@@ -23,6 +23,31 @@ export default class MyProjects extends Component {
   }
 
   render() {
+    const proj = name => {
+      switch (name) {
+        case "portfolio":
+          return (
+            <div className="ProjectContent">
+              {strings.myprojects.portfoliotext}
+            </div>
+          );
+        case "rust_practice":
+          return (
+            <div className="ProjectContent">{strings.myprojects.rusttext}</div>
+          );
+        case "Weigh":
+          return (
+            <div className="ProjectContent">{strings.myprojects.weightext}</div>
+          );
+        default:
+          return (
+            <div className="ProjectContent">
+              {strings.myprojects.defaultprojecttext}
+            </div>
+          );
+      }
+    };
+
     return (
       <div className="MyProjectsWrapper">
         <div className="Title">{strings.myprojects.title}</div>
@@ -33,7 +58,11 @@ export default class MyProjects extends Component {
               <div className="Project" key={project.id}>
                 <div className="ProjectTitle">{project.name}</div>
                 <div className="ProjectSubtitle">{project.language}</div>
-                <div className="ProjectTime">{project.updated_at}</div>
+                <div className="ProjectTime">
+                  {strings.myprojects.updatedat}
+                  {project.updated_at}
+                </div>
+                {proj(project.name)}
                 <a href={project.html_url} className="ProjectLink">
                   {strings.myprojects.viewbutton}
                 </a>

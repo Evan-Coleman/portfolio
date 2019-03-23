@@ -53,7 +53,13 @@
         font-size: 1rem;
       }
       .ProjectLink {
-        font-size: 1.5rem;
+        font-size: 1rem;
+      }
+      .ProjectContent {
+        font-family: $font-main;
+        padding-top: 0.5em;
+        margin-bottom: 1em;
+        font-size: 1.3rem;
       }
     }
   }
@@ -61,7 +67,7 @@
   @media only screen and (min-width: 1024px) {
     margin: 0 0 10rem 0;
     padding: 0;
-    height: 50em;
+    height: 55em;
     -webkit-clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
     clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 80%);
 
