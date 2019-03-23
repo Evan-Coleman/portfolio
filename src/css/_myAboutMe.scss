@@ -1,11 +1,11 @@
 @import "variables";
 
 .AboutMeWrapper {
-  margin-top: 5em;
+  margin: 5em 0 5em 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr 10fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   grid-template-areas:
     "circle circle circle"
     ". content .";
@@ -63,7 +63,7 @@
   }
 
   @media only screen and (min-width: 1024px) {
-    grid-template-columns: 1fr 43em 1fr;
+    grid-template-columns: 1fr 60vw 2fr;
     grid-template-rows: 1fr 20em 1fr;
     grid-template-areas:
       "circle . ."
