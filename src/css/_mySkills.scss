@@ -39,9 +39,16 @@
     .Title {
       width: 10em;
       margin-bottom: 1em;
+      font-size: 4em;
     }
     .MySkill {
       width: 70%;
+      .SkillTitle {
+        font-size: 3em;
+      }
+      .SkillContent {
+        font-size: 1.5em;
+      }
     }
   }
 }

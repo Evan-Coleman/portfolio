@@ -16,9 +16,8 @@ export default function MyHeader() {
         <div className="Subtitle">{strings.myheader.aboutme.subtitle}</div>
         <div className="Spacer" />
         <span className="Content">{strings.myheader.aboutme.content}</span>
-
         <div className="CtaButton">
-          <a className="CtaButton" href={strings.myheader.email}>
+          <a className="CtaButtonLink" href={strings.myheader.email}>
             {strings.myheader.aboutme.contactbutton}
           </a>
         </div>

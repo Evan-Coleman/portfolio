@@ -21,7 +21,7 @@ const strings = {
       subtitle: `My name is ${first} ${last}; I'm an experienced Software Engineer`,
       content:
         "I'm from Washington and really enjoy coding and learning all kinds of new stuff!",
-      contactbutton: "Contact Me"
+      contactbutton: "Email Me"
     },
     profilepictureplaceholder: "Profile Picture"
   },

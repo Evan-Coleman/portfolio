@@ -41,14 +41,16 @@
     .CtaButton {
       font-size: 1.8rem;
       background: #24292e;
-      color: #ffffff;
       margin-top: 2rem;
       transition: all 0.3s ease-in-out;
-      text-decoration: none;
+
+      .CtaButtonLink {
+        color: #ffffff;
+        text-decoration: none;
+      }
 
       &:hover {
         transform: scale(1.1);
-        background: lighten(#24292e, 10%);
       }
     }
   }
@@ -80,7 +82,7 @@
         width: 8em;
         padding: 0.4em;
         text-align: center;
-        box-shadow: #24292e;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 1);
       }
     }
   }
