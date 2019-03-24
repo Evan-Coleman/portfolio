@@ -1,5 +1,6 @@
 var first = "Evan";
 var last = "Coleman";
+var email = "evancoleman00@gmail.com";
 
 const strings = {
   navbar: {
@@ -15,7 +16,7 @@ const strings = {
     }
   },
   myheader: {
-    email: "mailto:evancoleman00@gmail.com",
+    email: `mailto:${email}`,
     aboutme: {
       title: "Hey there!",
       subtitle: `My name is ${first} ${last}; I'm an experienced Software Engineer`,
