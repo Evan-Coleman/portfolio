@@ -20,7 +20,9 @@ const strings = {
       title: "Hey there!",
       subtitle: `My name is ${first} ${last}; I'm an experienced Software Engineer`,
       content:
-        "I'm from Washington and really enjoy coding and learning all kinds of new stuff!",
+        "I'm from Washington, but currently living in Idaho. I enjoy " +
+        "coding, learning, " +
+        "hiking, reading, and watching movies!",
       contactbutton: "Email Me"
     },
     profilepictureplaceholder: "Profile Picture"
@@ -33,10 +35,9 @@ const strings = {
     subtitle4: "Thinker",
     content1:
       "Currently, my favorite project to-date is a 3rd party API integration. " +
-      "It was a tough project to take on solo, but probably the most rewarding " +
-      "experience I've had",
+      "It was a large project to take on solo, but probably the most rewarding " +
+      "professional experience I've had to date.",
     content2:
-      "In my free time, I like to hike, watch movies, and code. " +
       "The two personal projects I'm most proud of right now are both my " +
       "mobile app (Weigh) which you can find on my github, " +
       "and a website I made for a local non-profit " +
@@ -57,7 +58,7 @@ const strings = {
   },
   myprojects: {
     title: "GITHUB PROJECTS",
-    subtitle: "Three repos with the latest commits",
+    subtitle: "Three repos pulled from Github's API with the latest commits",
     updatedat: "Last Commit: ",
     viewbutton: "VIEW",
     portfoliotext: "My personal portfolio website",
