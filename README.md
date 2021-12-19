@@ -1,6 +1,6 @@
-# Evan Coleman's personal website ( [ecoleman.me](https://ecoleman.me/) )
+# Evan Coleman's personal website ( [ecoleman.dev](https://ecoleman.dev/) )
 
-## Late 2021 update: Simplifying things
+## Late 2021 update: Simplifying things with a premade template
 
 ----------------------------------------
 
