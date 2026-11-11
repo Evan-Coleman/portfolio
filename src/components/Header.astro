@@ -6,6 +6,7 @@ import { getPosts, getProjects } from '../lib/content';
 const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
 
 const nav = [
+  { href: '/', label: 'Home' },
   projects.length > 0 && { href: '/projects', label: 'Projects' },
   posts.length > 0 && { href: '/blog', label: 'Writing' },
   { href: '/resume', label: 'Résumé' },
@@ -65,16 +66,30 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
 </script>
 
 <style>
+  /* The bar stays pinned while the page scrolls, so the current page is always in view. */
+  .site-header {
+    position: sticky;
+    /* Small screens: the name row scrolls away and only the link row stays pinned. */
+    top: -3.5rem;
+    z-index: 20;
+    background: color-mix(in srgb, var(--paper) 90%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+    view-transition-name: site-header;
+  }
+
   /* Small screens: wordmark and toggle on one row, links on the next. */
   .site-header__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 2.25rem auto;
     grid-template-areas:
       'wordmark toggle'
       'nav nav';
     align-items: center;
     gap: 0.5rem 1rem;
-    padding-block: 1.25rem 0.5rem;
+    padding-block: 0.75rem 0.4rem;
   }
 
   .wordmark {
@@ -91,11 +106,16 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
   }
 
   @media (min-width: 36rem) {
+    .site-header {
+      top: 0;
+    }
+
     .site-header__inner {
       grid-template-columns: minmax(0, 1fr) auto auto;
+      grid-template-rows: auto;
       grid-template-areas: 'wordmark nav toggle';
       gap: 1rem;
-      padding-block: 1.5rem;
+      padding-block: 0.85rem;
     }
   }
 
@@ -115,10 +135,12 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
   }
 
   nav a {
+    display: inline-block;
     font-size: 0.95rem;
     color: var(--ink-2);
     text-decoration: none;
-    padding-block: 0.25rem;
+    padding-block: 0.35rem;
+    border-bottom: 2px solid transparent;
   }
 
   nav a:hover,
@@ -126,8 +148,10 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
     color: var(--ink);
   }
 
+  /* The page you are on: full-strength text and an accent underline. */
   nav a[aria-current='page'] {
-    box-shadow: 0 1px 0 var(--accent);
+    font-weight: 500;
+    border-bottom-color: var(--accent);
   }
 
   .theme-toggle {
