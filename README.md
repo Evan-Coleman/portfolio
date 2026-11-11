@@ -46,4 +46,10 @@ Cloudflare Pages also works: build command `npm run build`, output directory `di
 ## Static files
 
 - `public/CNAME` holds the custom domain.
-- `public/res/resume.pdf` keeps the old résumé URL working.
+- The résumé files under `/res/` are generated, not static (see below).
+
+## Résumé downloads
+
+`/res/resume.pdf`, `/res/resume.docx` and `/res/resume.txt` are generated from `src/data/resume.ts` at build time, so they always match the `/resume` page. The shared code is in `src/lib/resume-export.ts`.
+
+To make a private copy with a phone number and personal email, run `RESUME_PHONE="..." RESUME_EMAIL="..." npm run build` locally and take the files from `dist/res/`. Never commit those files, and never set these variables in CI.
