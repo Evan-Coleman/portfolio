@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
-import { roles, education } from '../data/resume';
+import { roles, education, yearRange } from '../data/resume';
 import { getPosts, getProjects, formatDate } from '../lib/content';
 
 const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
@@ -9,8 +9,8 @@ const latestPosts = posts.slice(0, 3);
 
 const facts = [
   { term: 'Now', detail: `${roles[0].title}, ${roles[0].company}` },
-  { term: 'Focus', detail: 'Backend services, APIs, legacy migration' },
-  { term: 'Stack', detail: 'Java · Spring Boot · SQL' },
+  { term: 'Scale', detail: '9 services, about 30 million API requests a day' },
+  { term: 'Stack', detail: 'Java · Spring Boot · AWS · Kubernetes' },
   { term: 'Studied', detail: `${education.fields.replace(', ', ' and ')}, ${education.school}` },
 ];
 ---
@@ -21,9 +21,10 @@ const facts = [
       <p class="label">{site.name} · {site.role}</p>
       <h1>I lead the team behind the services <em>everyone else</em> builds on.</h1>
       <p class="lede">
-        I’m Evan, a lead software engineer at State Farm. My team owns nine mission-critical backend services at the
-        center of the company’s move off legacy systems. I care about services that stay fast under load, deploys that
-        are uneventful, and engineers who get better because of the team they’re on.
+        I’m Evan, a lead software engineer at State Farm. I lead eight engineers, and together we own nine backend
+        services that answer about 30 million API requests a day at the center of the company’s move off legacy
+        systems. I care about services that stay fast under load, deploys that are uneventful, and engineers who get
+        better because of the team they’re on.
       </p>
       <div class="hero__actions">
         <a class="btn" href="/resume">Read my résumé</a>
@@ -62,7 +63,7 @@ const facts = [
                       {role.note && ` (${role.note})`}
                     </span>
                   </h3>
-                  <p class="label">{role.start === role.end ? role.start : `${role.start} – ${role.end}`}</p>
+                  <p class="label">{yearRange(role)}</p>
                 </div>
                 <p class="role__summary">{role.summary}</p>
               </li>
@@ -142,6 +143,10 @@ const facts = [
           I studied computer science and German at Washington State University, and I’ve spent the years since on the
           backend of large insurance systems: Guidewire PolicyCenter first, then the Spring Boot services that are
           replacing it. The work I enjoy most is algorithmic and on the backend, especially making something slow fast.
+        </p>
+        <p>
+          These days much of that work happens alongside AI coding agents. I write the plan, scope the change, and
+          verify what comes back with tests.
         </p>
         <p>Away from the keyboard I’m usually watching films, fussing over audio gear, or playing games.</p>
       </div>

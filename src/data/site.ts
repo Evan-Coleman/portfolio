@@ -5,7 +5,7 @@ export const site = {
   title: 'Evan Coleman — Lead Software Engineer',
   role: 'Lead Software Engineer',
   description:
-    'Evan Coleman is a lead software engineer working on backend and platform systems. Résumé, projects and writing.',
+    'Evan Coleman is a lead software engineer and technical lead building backend services in Java and Spring Boot on AWS and Kubernetes. Résumé, projects and writing.',
   url: 'https://ecoleman.dev',
   email: 'jobs@ecoleman.dev',
   // Shown in the hero and on the résumé. Update this the moment your work

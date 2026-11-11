@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
-import { roles, skills, education } from '../data/resume';
+import { roles, skills, education, monthRange } from '../data/resume';
+
+const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 ---
 
 <Base title="Résumé" description={`Résumé of ${site.name}, ${site.role}.`}>
@@ -12,9 +14,17 @@ import { roles, skills, education } from '../data/resume';
       <p class="contact muted">
         <a href={`mailto:${site.email}`}>{site.email}</a>
         <span aria-hidden="true">·</span>
-        <a href={site.links.linkedin} rel="me noopener">LinkedIn</a>
+        <a href={site.links.linkedin} rel="me noopener">
+          <span class="screen-only">LinkedIn</span>
+          <span class="print-only">{bare(site.links.linkedin)}</span>
+        </a>
         <span aria-hidden="true">·</span>
-        <a href={site.links.github} rel="me noopener">GitHub</a>
+        <a href={site.links.github} rel="me noopener">
+          <span class="screen-only">GitHub</span>
+          <span class="print-only">{bare(site.links.github)}</span>
+        </a>
+        <span class="print-only" aria-hidden="true">·</span>
+        <span class="print-only">{bare(site.url)}</span>
         <span aria-hidden="true">·</span>
         <span>{site.availability}</span>
       </p>
@@ -36,9 +46,10 @@ import { roles, skills, education } from '../data/resume';
                   <span class="role__company">
                     {role.company}
                     {role.note && ` (${role.note})`}
+                    <span class="role__place"> · {role.location}</span>
                   </span>
                 </h3>
-                <p class="label">{role.start === role.end ? role.start : `${role.start} – ${role.end}`}</p>
+                <p class="label">{monthRange(role)}</p>
               </div>
               <ul class="role__list">
                 {role.highlights.map((item) => (
@@ -76,6 +87,14 @@ import { roles, skills, education } from '../data/resume';
 </Base>
 
 <style>
+  .print-only {
+    display: none;
+  }
+
+  .role__place {
+    font-weight: 400;
+  }
+
   .head {
     padding-block: clamp(3rem, 8vw, 5.5rem) clamp(2rem, 5vw, 3rem);
   }
@@ -177,6 +196,14 @@ import { roles, skills, education } from '../data/resume';
   }
 
   @media print {
+    .print-only {
+      display: inline;
+    }
+
+    .screen-only {
+      display: none;
+    }
+
     .head {
       padding-block: 0 0.75rem;
     }
