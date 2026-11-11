@@ -50,7 +50,7 @@ export const roles: Role[] = [
     highlights: [
       'Delivered a new insurance startup’s MVP within 2 months, so it could sign customer contracts ahead of competitors.',
       'Built the Java/Guidewire backend and frontend of a fleet-vehicle product that opened a new market segment.',
-      'Extended PolicyCenter to activate each new-state rollout within a sprint; steered the team’s TDD/BDD workflow.',
+      'Extended Guidewire PolicyCenter to activate each new-state rollout within a sprint; steered a TDD/BDD workflow.',
     ],
   },
   {
@@ -87,7 +87,18 @@ export const roles: Role[] = [
 export const skills: { label: string; items: string[] }[] = [
   {
     label: 'Backend',
-    items: ['Java', 'Spring Boot', 'Spring Cloud', 'REST APIs', 'Microservices', 'SQL', 'Redis', 'Guidewire PolicyCenter', 'Gosu'],
+    // Insurance-platform skills last: true, findable, and out of the way for product companies.
+    items: [
+      'Java',
+      'Spring Boot',
+      'Spring Cloud',
+      'REST APIs',
+      'Microservices',
+      'SQL',
+      'Redis',
+      'Guidewire PolicyCenter',
+      'Gosu',
+    ],
   },
   { label: 'Cloud and DevOps', items: ['AWS', 'Kubernetes', 'Docker', 'GitLab CI/CD', 'Argo CD'] },
   { label: 'Observability and testing', items: ['OpenTelemetry', 'Dynatrace', 'Splunk', 'JMeter'] },

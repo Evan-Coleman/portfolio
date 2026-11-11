@@ -77,8 +77,6 @@ export const GET: APIRoute = async () => {
     const space = doc.widthOfString(' ');
     const textWidth = doc.font(font).widthOfString(text);
     const gap = width - textWidth - dateWidth;
-    // Each space is stretched to at most twice its width, which those extractors still chain.
-    const count = Math.ceil(gap / (2 * space));
     if (gap < 3 * space) {
       // Too long for one line: wrap the text beside the date.
       tag(type, () => doc.text(text, left, y, { width: width - dateWidth - 8, lineGap: GAP }));
@@ -87,6 +85,8 @@ export const GET: APIRoute = async () => {
       doc.y = after;
       return;
     }
+    // Each space is stretched to at most twice its width, which those extractors still chain.
+    const count = Math.ceil(gap / (2 * space));
     tag(type, () => doc.text(text, left, y, { lineBreak: false }));
     tag('P', () => {
       doc.font(R).text(' '.repeat(count), left + textWidth, y, {
