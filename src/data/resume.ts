@@ -92,13 +92,27 @@ export const skills: { label: string; items: string[] }[] = [
   { label: 'AI-assisted engineering', items: ['Claude Code', 'Cursor', 'GitHub Copilot', 'Codex', 'MCP', 'Agent skills'] },
 ];
 
-// State the degree exactly as the diploma does; employers verify this line.
 export const education = {
   school: 'Washington State University',
-  degree: 'Bachelor of Arts',
-  detail: 'Coursework in computer science and German',
+  degree: 'Bachelor’s',
+  detail: 'Computer Science, German',
   year: '2017',
 };
+
+/** Personal projects listed on the résumé. Full write-ups live in src/content/projects. */
+export const sideProjects: { name: string; link?: string; detail: string }[] = [
+  {
+    name: 'OrthoRep',
+    link: 'orthorep.app',
+    detail:
+      'Strength-training logger for iPhone with a standalone Apple Watch app, live on the App Store. Native Swift, SwiftUI, and SwiftData; local-first, with two-way watch sync over WatchConnectivity.',
+  },
+  {
+    name: 'Steady',
+    detail:
+      'Python CLI that keeps durable project plans and carries bounded AI-agent tasks through automated checks and human review. In private prerelease, MIT licensed.',
+  },
+];
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 

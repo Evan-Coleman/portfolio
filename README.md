@@ -34,7 +34,7 @@ Copy `src/content/posts/hello-again.md` and edit the frontmatter:
 
 ## Adding a project
 
-Copy `src/content/projects/example-project.md`. Fields: `title`, `summary`, `year`, `role`, `stack`, `links`, `order`. Projects are hidden from the production site until `published: true` is set.
+Copy `src/content/projects/_template.md` to a new file without the underscore. Fields: `title`, `summary`, `year`, `role`, `stack`, `links`, `order`. Projects are hidden from the production site until `published: true` is set.
 
 ## Deployment
 
