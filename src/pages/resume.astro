@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site } from '../data/site';
-import { headline, summary, roles, skills, education, monthRange } from '../data/resume';
+import { headline, summary, roles, skills, sideProjects, education, monthRange } from '../data/resume';
 
 const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
 ---
@@ -85,6 +85,24 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
         }
       </dl>
     </section>
+
+    {
+      sideProjects.length > 0 && (
+        <section class="section" aria-labelledby="projects-label">
+          <h2 class="label" id="projects-label">Projects</h2>
+          <div class="projects">
+            {sideProjects.map((p) => (
+              <div>
+                <p class="edu__school">
+                  {p.link ? <a href={`https://${p.link}`} rel="noopener">{p.name}</a> : p.name}
+                </p>
+                <p class="muted">{p.detail}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
 
     <section class="section last" aria-labelledby="education-label">
       <h2 class="label" id="education-label">Education</h2>
@@ -211,6 +229,15 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
     font-weight: 500;
   }
 
+  .projects {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .projects .muted {
+    margin-top: 0.1rem;
+  }
+
   .last {
     margin-bottom: 3rem;
   }
@@ -297,8 +324,22 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
       font-size: 9pt;
     }
 
+    .projects {
+      gap: 0.2rem;
+    }
+
+    .projects > div {
+      break-inside: avoid;
+    }
+
+    .projects .muted {
+      margin-top: 0;
+      line-height: 1.25;
+    }
+
     .skills,
     .edu__school,
+    .projects .muted,
     .section.last .muted {
       font-size: 9pt;
     }

@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 import PDFDocument from 'pdfkit';
-import { headline, summary, roles, skills, education, monthRange } from '../../data/resume';
+import { headline, summary, roles, skills, sideProjects, education, monthRange } from '../../data/resume';
 import { contactParts, docTitle, docAuthor, roleDetail, educationLine } from '../../lib/resume-export';
 
 const R = 'Helvetica';
@@ -64,6 +64,14 @@ export const GET: APIRoute = async () => {
       doc.text(h, left + 16, by, { width: width - 16, lineGap: GAP });
     }
   });
+
+  if (sideProjects.length) {
+    heading('Projects');
+    for (const p of sideProjects) {
+      doc.font(B).fontSize(BODY).text(p.name, left, doc.y, { width, continued: true, lineGap: GAP });
+      doc.font(R).text(`${p.link ? ' (link)' : ''} – ${p.detail}`);
+    }
+  }
 
   heading('Education');
   {

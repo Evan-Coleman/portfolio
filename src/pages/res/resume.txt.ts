@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { headline, summary, roles, skills, education, monthRange } from '../../data/resume';
+import { headline, summary, roles, skills, sideProjects, education, monthRange } from '../../data/resume';
 import { contactParts, docAuthor, roleDetail, educationLine } from '../../lib/resume-export';
 
 const COLS = 90;
@@ -40,6 +40,14 @@ export const GET: APIRoute = () => {
     for (const h of role.highlights) out.push(...wrap(h, COLS, '- ', '  '));
   });
   out.push('');
+
+  if (sideProjects.length) {
+    out.push('PROJECTS');
+    for (const p of sideProjects) {
+      out.push(...wrap(`${p.name}${p.link ? ' (link)' : ''} - ${p.detail}`, COLS, '', '  '));
+    }
+    out.push('');
+  }
 
   out.push('EDUCATION', ...wrap(`${educationLine()}, ${education.year}`, COLS, '', '  '), '');
 

@@ -9,18 +9,18 @@ import {
   TabStopType,
   TextRun,
 } from 'docx';
-import { headline, summary, roles, skills, education, monthRange } from '../../data/resume';
+import { headline, summary, roles, skills, sideProjects, education, monthRange } from '../../data/resume';
 import { contactParts, docTitle, docAuthor, roleDetail, educationLine } from '../../lib/resume-export';
 
 const FONT = 'Arial';
 const BODY = 19; // half-points (9.5pt)
 const WIDTH = 12240 - 2 * 864; // Letter minus 0.6in margins, in twips
 const t = (text: string, o: Record<string, unknown> = {}) => new TextRun({ text, font: FONT, size: BODY, ...o });
-const LINE = { line: 250 };
+const LINE = { line: 240 };
 
 const heading = (text: string) =>
   new Paragraph({
-    spacing: { before: 120, after: 50, ...LINE },
+    spacing: { before: 100, after: 40, ...LINE },
     keepNext: true,
     border: { bottom: { style: BorderStyle.SINGLE, size: 6, space: 1, color: '000000' } },
     children: [t(text.toUpperCase(), { bold: true, size: 22 })],
@@ -86,6 +86,19 @@ export const GET: APIRoute = async () => {
               (h) => new Paragraph({ numbering: { reference: 'bullets', level: 0 }, spacing: LINE, children: [t(h)] }),
             ),
           ]),
+
+          ...(sideProjects.length
+            ? [
+                heading('Projects'),
+                ...sideProjects.map(
+                  (p) =>
+                    new Paragraph({
+                      spacing: LINE,
+                      children: [t(p.name, { bold: true }), t(`${p.link ? ' (link)' : ''} – ${p.detail}`)],
+                    }),
+                ),
+              ]
+            : []),
 
           heading('Education'),
           tabbed([t(educationLine())], education.year),
