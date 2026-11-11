@@ -4,8 +4,18 @@ summary: A story-centered app for learning Modern Greek on iOS, Android and web.
 role: Solo project · In development
 year: '2026'
 stack: [TypeScript, Expo, React Native, SQLite, Supabase, Vitest, Playwright]
+links:
+  - label: milaki.app
+    href: https://milaki.app
 order: 3
 published: true
+gallery:
+  - src: ../../assets/projects/milaki/reader.webp
+    alt: "Milaki reader: a short Greek story with the sentence being narrated highlighted and playback controls below."
+  - src: ../../assets/projects/milaki/word-help.webp
+    alt: "Milaki word help: tapping a word opens its meaning, grammar and an example sentence."
+  - src: ../../assets/projects/milaki/review.webp
+    alt: "Milaki review card showing a Greek word with its pronunciation and a Show answer button."
 ---
 
 ## Why I am building it

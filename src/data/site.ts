@@ -11,7 +11,7 @@ export const site = {
   // Shown in the hero and on the résumé. Update this the moment your work
   // authorisation changes: "EU citizen, no sponsorship needed" is the single
   // most useful line a European recruiter can read.
-  availability: 'US-based · open to relocating to Europe',
+  availability: 'US-based · German citizenship pending · open to relocating to Europe',
   links: {
     github: 'https://github.com/Evan-Coleman',
     linkedin: 'https://www.linkedin.com/in/evan-coleman/',

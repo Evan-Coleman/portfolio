@@ -1,9 +1,9 @@
-import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
-import { z } from 'astro/zod';
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
 const posts = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/posts' }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/posts" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -16,21 +16,27 @@ const posts = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/projects' }),
-  schema: z.object({
-    title: z.string(),
-    summary: z.string(),
-    role: z.string().optional(),
-    year: z.string(),
-    stack: z.array(z.string()).default([]),
-    links: z
-      .array(z.object({ label: z.string(), href: z.url() }))
-      .default([]),
-    order: z.number().default(100),
-    // Projects are private until you say otherwise. Nothing reaches the
-    // public site unless this is explicitly set to true.
-    published: z.boolean().default(false),
+  loader: glob({
+    pattern: "**/[^_]*.{md,mdx}",
+    base: "./src/content/projects",
   }),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      summary: z.string(),
+      role: z.string().optional(),
+      year: z.string(),
+      stack: z.array(z.string()).default([]),
+      links: z
+        .array(z.object({ label: z.string(), href: z.url() }))
+        .default([]),
+      order: z.number().default(100),
+      // Projects are private until you say otherwise. Nothing reaches the
+      // public site unless this is explicitly set to true.
+      published: z.boolean().default(false),
+      cover: z.object({ src: image(), alt: z.string() }).optional(),
+      gallery: z.array(z.object({ src: image(), alt: z.string() })).default([]),
+    }),
 });
 
 export const collections = { posts, projects };

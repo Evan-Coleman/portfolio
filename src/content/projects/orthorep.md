@@ -11,6 +11,18 @@ links:
     href: https://apps.apple.com/us/app/orthorep-gym-tracker/id6760978830
 order: 1
 published: true
+cover:
+  src: ../../assets/projects/orthorep/header.webp
+  alt: "OrthoRep on an iPhone and an Apple Watch, with the logging dock enlarged between them: 225 lb, 8 reps, RiR 2, a rest timer and a Log set button."
+gallery:
+  - src: ../../assets/projects/orthorep/log-the-set.webp
+    alt: "App Store panel: Log the set in one tap. The iPhone workout screen for Back Squat with the logging dock under the thumb."
+  - src: ../../assets/projects/orthorep/watch.webp
+    alt: "App Store panel: The Watch logs on its own. An Apple Watch showing the current Back Squat set at 225 lb for 8 reps."
+  - src: ../../assets/projects/orthorep/pr.webp
+    alt: "App Store panel: Every PR, caught. The workout summary showing a new weight PR for Back Squat."
+  - src: ../../assets/projects/orthorep/progress.webp
+    alt: "App Store panel: Eight weeks on one screen. A bar chart of weekly sets with best lifts and estimated one-rep max."
 ---
 
 ## Why I built it

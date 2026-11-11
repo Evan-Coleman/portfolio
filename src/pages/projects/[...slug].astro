@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import { Image } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
 import { getProjects } from '../../lib/content';
 
@@ -10,7 +11,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, summary, role, year, stack, links } = project.data;
+const { title, summary, role, year, stack, links, cover, gallery } = project.data;
 ---
 
 <Base title={title} description={summary} noindex={!project.data.published}>
@@ -43,6 +44,37 @@ const { title, summary, role, year, stack, links } = project.data;
         )
       }
     </header>
+
+    {
+      (cover || gallery.length > 0) && (
+        <div class="shots">
+          {cover && (
+            <Image
+              class="shot cover"
+              src={cover.src}
+              alt={cover.alt}
+              widths={[960, 1920]}
+              sizes="(min-width: 1168px) 1088px, calc(100vw - 2.5rem)"
+              loading="eager"
+            />
+          )}
+          {gallery.length > 0 && (
+            <div class="gallery" role="group" tabindex="0" aria-label={`${title} screenshots`}>
+              {gallery.map((item) => (
+                <Image
+                  class="shot"
+                  src={item.src}
+                  alt={item.alt}
+                  widths={[440, 880]}
+                  sizes="(min-width: 40rem) 355px, max(200px, 62vw)"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )
+    }
 
     <article class="prose">
       <Content />
@@ -92,6 +124,48 @@ const { title, summary, role, year, stack, links } = project.data;
 
   .stack {
     margin-top: 1.5rem;
+  }
+
+  .shots {
+    display: grid;
+    gap: 12px;
+    margin-top: clamp(0.5rem, 2vw, 1rem);
+    margin-bottom: clamp(2.5rem, 6vw, 3rem);
+  }
+
+  /* Image classes are applied to elements rendered by <Image>, so they need :global-free
+     scoping via the shared data-astro-cid attribute, which Astro adds to them. */
+  .shot {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+  }
+
+  .gallery {
+    display: flex;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .gallery .shot {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  @media (max-width: 39.99rem) {
+    .gallery {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-x: contain;
+    }
+
+    .gallery .shot {
+      flex: 0 0 max(200px, 62vw);
+      width: max(200px, 62vw);
+      scroll-snap-align: start;
+    }
   }
 
   .end {
