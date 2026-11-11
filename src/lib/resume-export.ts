@@ -21,5 +21,5 @@ export function roleDetail(role: Role): string {
 
 /** "School – degree – fields" */
 export function educationLine(): string {
-  return `${education.school} – ${education.degree} – ${education.fields}`;
+  return `${education.school} – ${education.degree} – ${education.detail}`;
 }

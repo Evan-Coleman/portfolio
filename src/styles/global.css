@@ -543,11 +543,11 @@ h2.label {
   }
 
   body {
-    font-size: 9.25pt;
-    line-height: 1.4;
+    font-size: 9pt;
+    line-height: 1.38;
   }
 
   @page {
-    margin: 12mm 14mm;
+    margin: 10mm 13mm;
   }
 }
