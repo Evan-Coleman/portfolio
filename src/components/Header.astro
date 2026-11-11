@@ -32,24 +32,24 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
         }
       </ul>
     </nav>
-      <button class="theme-toggle" type="button" aria-label="Switch between light and dark theme">
-        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-          <path
-            d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linejoin="round"></path>
-        </svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
-          <path
-            d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"
-            stroke="currentColor"
-            stroke-width="1.6"
-            stroke-linecap="round"></path>
-        </svg>
-      </button>
+    <button class="theme-toggle" type="button" aria-label="Switch between light and dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+        <path
+          d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linejoin="round"></path>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.75"></circle>
+        <path
+          d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"
+          stroke="currentColor"
+          stroke-width="1.75"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
   </div>
 </header>
 
@@ -68,79 +68,83 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
 <style>
   /* The bar stays pinned while the page scrolls, so the current page is always in view. */
   .site-header {
+    --name-row: 2.75rem;
+    --link-row: 2.5rem;
+    --link: 1.75rem;
     position: sticky;
     /* Small screens: the name row scrolls away and only the link row stays pinned. */
-    top: -3.5rem;
+    top: calc(-1 * var(--name-row));
     z-index: 20;
-    background: color-mix(in srgb, var(--paper) 90%, transparent);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    background: var(--paper);
     border-bottom: 1px solid var(--rule);
-    view-transition-name: site-header;
   }
 
-  /* Small screens: wordmark and toggle on one row, links on the next. */
+  /* Small screens: name and toggle on one row, links on the next. */
   .site-header__inner {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    grid-template-rows: 2.25rem auto;
+    grid-template-rows: var(--name-row) var(--link-row);
     grid-template-areas:
       'wordmark toggle'
       'nav nav';
     align-items: center;
-    gap: 0.5rem 1rem;
-    padding-block: 0.75rem 0.4rem;
+    column-gap: 0.5rem;
+  }
+
+  @media (min-width: 36rem) {
+    .site-header {
+      --link-row: 3.25rem;
+      top: 0;
+    }
+
+    .site-header__inner {
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      grid-template-rows: var(--link-row);
+      grid-template-areas: 'wordmark nav toggle';
+    }
+  }
+
+  @media (pointer: coarse) {
+    .site-header {
+      --link: 2.25rem;
+    }
   }
 
   .wordmark {
     grid-area: wordmark;
     justify-self: start;
+    font-size: var(--text-md);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .wordmark:hover {
+    color: inherit;
   }
 
   nav {
     grid-area: nav;
   }
 
-  .theme-toggle {
-    grid-area: toggle;
-  }
-
-  @media (min-width: 36rem) {
-    .site-header {
-      top: 0;
-    }
-
-    .site-header__inner {
-      grid-template-columns: minmax(0, 1fr) auto auto;
-      grid-template-rows: auto;
-      grid-template-areas: 'wordmark nav toggle';
-      gap: 1rem;
-      padding-block: 0.85rem;
-    }
-  }
-
-  .wordmark {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    text-decoration: none;
-    white-space: nowrap;
-  }
-
+  /* Links carry their own padding, so the list is pulled left to keep the text on the page edge. */
   ul {
     display: flex;
-    align-items: center;
-    gap: clamp(0.9rem, 3vw, 1.75rem);
+    gap: 0.25rem;
+    margin-left: -0.5rem;
   }
 
   nav a {
-    display: inline-block;
-    font-size: 0.95rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: var(--link);
+    padding-inline: 0.5rem;
+    border-radius: 4px;
+    font-size: var(--text-sm);
     color: var(--ink-2);
     text-decoration: none;
-    padding-block: 0.35rem;
-    border-bottom: 2px solid transparent;
   }
 
   nav a:hover,
@@ -148,29 +152,43 @@ const isCurrent = (href: string) => path === href || path.startsWith(`${href}/`)
     color: var(--ink);
   }
 
-  /* The page you are on: full-strength text and an accent underline. */
-  nav a[aria-current='page'] {
-    font-weight: 500;
-    border-bottom-color: var(--accent);
+  /* The page you are on: full-strength text, and an accent rule that sits on the header's own. */
+  nav a[aria-current='page']::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0.5rem;
+    bottom: calc((var(--link) - var(--link-row)) / 2 - 1px);
+    height: 2px;
+    background: var(--accent);
   }
 
   .theme-toggle {
+    grid-area: toggle;
     display: grid;
     place-items: center;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2rem;
+    height: 2rem;
     margin-right: -0.5rem;
     padding: 0;
     border: 0;
-    border-radius: 999px;
+    border-radius: var(--radius);
     background: none;
     color: var(--ink-2);
     cursor: pointer;
+    transition: color 0.12s ease, background 0.12s ease;
   }
 
   .theme-toggle:hover {
-    background: var(--accent-wash);
-    color: var(--accent);
+    background: var(--inset);
+    color: var(--ink);
+  }
+
+  @media (pointer: coarse) {
+    .theme-toggle {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-right: -0.75rem;
+    }
   }
 
   /* Show the icon for the theme you would switch to. */

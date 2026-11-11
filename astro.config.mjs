@@ -28,8 +28,8 @@ export default defineConfig({
   ],
   devToolbar: { enabled: false },
   markdown: {
-    shikiConfig: {
-      themes: { light: 'github-light', dark: 'github-dark-dimmed' },
-    },
+    // Code colours come from the site's own tokens (see "Code" in src/styles/global.css),
+    // so highlighting follows the light and dark themes without a second Shiki theme.
+    shikiConfig: { theme: 'css-variables' },
   },
 });
