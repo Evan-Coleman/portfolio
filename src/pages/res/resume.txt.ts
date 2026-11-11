@@ -1,15 +1,25 @@
 import type { APIRoute } from 'astro';
-import { headline, summary, roles, skills, sideProjects, education, monthRange } from '../../data/resume';
-import { contactParts, docAuthor, roleDetail, educationLine } from '../../lib/resume-export';
+import { headline, summary, roles, skills, sideProjects, education } from '../../data/resume';
+import {
+  ascii,
+  authorizationParts,
+  contactParts,
+  dateRange,
+  docAuthor,
+  educationLine,
+  roleDetail,
+} from '../../lib/resume-export';
 
-const COLS = 90;
+// The copy for pasting into application forms: ASCII only, nothing centered, one fact per line
+// in the header and in each role's heading, and hard-wrapped so it reads the same in any text box.
+const COLS = 80;
 
-function wrap(text: string, width: number, first = '', rest = first): string[] {
+function wrap(text: string, first = '', rest = first): string[] {
   const lines: string[] = [];
   let line = first;
   let empty = true;
-  for (const word of text.split(/\s+/)) {
-    if (!empty && line.length + 1 + word.length > width) {
+  for (const word of ascii(text).split(/\s+/)) {
+    if (!empty && line.length + 1 + word.length > COLS) {
       lines.push(line);
       line = rest + word;
     } else {
@@ -21,35 +31,35 @@ function wrap(text: string, width: number, first = '', rest = first): string[] {
   return lines;
 }
 
-const center = (s: string) => ' '.repeat(Math.max(0, Math.floor((COLS - s.length) / 2))) + s;
-
 export const GET: APIRoute = () => {
   const out: string[] = [];
-  out.push(center(docAuthor.toUpperCase()), center(headline), center(contactParts().join(' | ')), '');
-
-  out.push('SUMMARY', ...wrap(summary, COLS), '');
-
-  out.push('TECHNICAL SKILLS');
-  for (const g of skills) out.push(...wrap(`${g.label}: ${g.items.join(', ')}`, COLS, '', '  '));
+  out.push(...wrap(docAuthor), ...wrap(headline));
+  for (const part of contactParts()) out.push(...wrap(part.text));
+  for (const part of authorizationParts) out.push(...wrap(part));
   out.push('');
 
+  out.push('SUMMARY', ...wrap(summary), '');
+
   out.push('EXPERIENCE');
-  roles.forEach((role, i) => {
-    if (i) out.push('');
-    out.push(...wrap(`${role.title} | ${roleDetail(role)} | ${monthRange(role)}`, COLS, '', '  '));
-    for (const h of role.highlights) out.push(...wrap(h, COLS, '- ', '  '));
-  });
+  for (const role of roles) {
+    out.push('', ...wrap(role.title), ...wrap(roleDetail(role)), dateRange(role));
+    for (const h of role.highlights) out.push(...wrap(h, '- ', '  '));
+  }
+  out.push('');
+
+  out.push('TECHNICAL SKILLS');
+  for (const g of skills) out.push(...wrap(`${g.label}: ${g.items.join(', ')}`, '', '  '));
   out.push('');
 
   if (sideProjects.length) {
     out.push('PROJECTS');
     for (const p of sideProjects) {
-      out.push(...wrap(`${p.name}${p.link ? ` (${p.link})` : ''} - ${p.detail}`, COLS, '', '  '));
+      out.push(...wrap(`${p.name}${p.link ? ` (${p.link})` : ''} - ${p.detail}`, '', '  '));
     }
     out.push('');
   }
 
-  out.push('EDUCATION', ...wrap(`${educationLine()}, ${education.year}`, COLS, '', '  '), '');
+  out.push('EDUCATION', ...wrap(`${educationLine()}, ${education.year}`, '', '  '), '');
 
   return new Response(out.join('\n'), {
     headers: { 'Content-Type': 'text/plain; charset=utf-8' },

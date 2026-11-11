@@ -12,30 +12,28 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
       <h1>{site.name}</h1>
       <p class="head__role">{headline}</p>
       <p class="contact muted">
+        <span>{site.location}</span>
+        <span aria-hidden="true">·</span>
         <a href={`mailto:${site.email}`}>{site.email}</a>
         <span aria-hidden="true">·</span>
         <a href={site.links.linkedin} rel="me noopener">
           <span class="screen-only">LinkedIn</span>
           <span class="print-only">{bare(site.links.linkedin)}</span>
         </a>
-        <span aria-hidden="true">·</span>
-        <a href={site.links.github} rel="me noopener">
-          <span class="screen-only">GitHub</span>
-          <span class="print-only">{bare(site.links.github)}</span>
-        </a>
+        <span class="screen-only" aria-hidden="true">·</span>
+        <a class="screen-only" href={site.links.github} rel="me noopener">GitHub</a>
         <span class="print-only" aria-hidden="true">·</span>
         <span class="print-only">{bare(site.url)}</span>
-        <span aria-hidden="true">·</span>
-        <span>{site.availability}</span>
       </p>
+      <p class="auth muted">{site.workAuthorization.join(' · ')}</p>
       <p class="actions no-print">
-        <a class="btn" href="/res/resume.pdf" download="Evan-Coleman-Resume.pdf">Download PDF</a>
+        <a class="btn" href="/res/Evan-Coleman-Resume.pdf" download>Download PDF</a>
         <a class="btn btn--ghost" href={`mailto:${site.email}`}>Email me</a>
       </p>
       <p class="alt muted no-print">
         Also available as{' '}
-        <a href="/res/resume.docx" download="Evan-Coleman-Resume.docx">Word</a>{' '}
-        or <a href="/res/resume.txt">plain text</a>.
+        <a href="/res/Evan-Coleman-Resume.docx" download>Word</a>{' '}
+        or <a href="/res/Evan-Coleman-Resume.txt">plain text</a>.
       </p>
     </header>
 
@@ -146,6 +144,10 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
     flex-wrap: wrap;
     gap: 0.25rem 0.75rem;
     margin-top: 1.25rem;
+  }
+
+  .auth {
+    margin-top: 0.35rem;
   }
 
   .actions {
@@ -271,6 +273,10 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 
     .contact {
       margin-top: 0.3rem;
+    }
+
+    .auth {
+      margin-top: 0;
     }
 
     .section {
