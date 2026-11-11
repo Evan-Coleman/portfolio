@@ -1,0 +1,100 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getProjects } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, summary, role, year, stack, links } = project.data;
+---
+
+<Base title={title} description={summary} noindex={!project.data.published}>
+  <div class="wrap">
+    <header class="project-head">
+      <p><a class="arrow-back" href="/projects">← Projects</a></p>
+      <p class="label meta">{year}{role && ` · ${role}`}</p>
+      <h1>{title}</h1>
+      <p class="lede">{summary}</p>
+
+      {
+        links.length > 0 && (
+          <p class="links">
+            {links.map((link) => (
+              <a class="btn btn--ghost" href={link.href} rel="noopener">
+                {link.label}
+              </a>
+            ))}
+          </p>
+        )
+      }
+
+      {
+        stack.length > 0 && (
+          <ul class="chips stack" aria-label="Stack">
+            {stack.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    <article class="prose">
+      <Content />
+    </article>
+    <div class="end"></div>
+  </div>
+</Base>
+
+<style>
+  .project-head {
+    padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem);
+  }
+
+  .arrow-back {
+    font-size: var(--step--1);
+    text-decoration: none;
+    color: var(--ink-2);
+  }
+
+  .arrow-back:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    margin-top: 2rem;
+  }
+
+  h1 {
+    margin-top: 0.75rem;
+    max-width: 22ch;
+    font-size: var(--step-3);
+    font-weight: 380;
+    line-height: 1.06;
+    letter-spacing: -0.028em;
+  }
+
+  .project-head .lede {
+    margin-top: 1.25rem;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+
+  .stack {
+    margin-top: 1.5rem;
+  }
+
+  .end {
+    padding-bottom: 4rem;
+  }
+</style>

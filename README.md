@@ -1,8 +1,49 @@
-# Evan Coleman's personal website ( [ecoleman.dev](https://ecoleman.dev/) )
+# ecoleman.dev
 
-## Mid 2024  update: Update resume and readme
-## Late 2021 update: Simplifying things with a premade template
+Personal portfolio and blog for Evan Coleman. A static site built with Astro, with no client-side JavaScript frameworks.
 
-----------------------------------------
+## Stack
 
-Just a place to keep my most up to date resume. I got other hobbies now!
+- Astro 7 (static output), content collections for posts and projects
+- `@astrojs/rss` for the feed, sitemap, self-hosted fonts
+- Plain CSS design tokens in `src/styles/global.css`
+
+## Commands
+
+```sh
+npm install
+npm run dev     # local dev server (drafts and hidden projects are visible)
+npm run build   # production build into dist/
+```
+
+## Where to edit
+
+- `src/data/site.ts`: name, role, email, links, availability
+- `src/data/resume.ts`: roles, skills, education (feeds the home page and `/resume`)
+- `src/content/posts/`: blog posts
+- `src/content/projects/`: project write-ups
+- Files prefixed with `_` in the content folders are ignored by the collections.
+
+## Writing a post
+
+Copy `src/content/posts/hello-again.md` and edit the frontmatter:
+
+- `title`, `description`, `date` (required)
+- `updated` (optional), `tags` (list)
+- `draft: true` keeps the post out of production builds; it still shows in `npm run dev`. Remove the line or set it to `false` to publish.
+
+## Adding a project
+
+Copy `src/content/projects/example-project.md`. Fields: `title`, `summary`, `year`, `role`, `stack`, `links`, `order`. Projects are hidden from the production site until `published: true` is set.
+
+## Deployment
+
+GitHub Pages, via `.github/workflows/deploy.yml`, on every push to `gh-pages`.
+In the repository, go to Settings → Pages → Source and select "GitHub Actions". The old site was served straight from the branch, so this must be changed once.
+
+Cloudflare Pages also works: build command `npm run build`, output directory `dist`.
+
+## Static files
+
+- `public/CNAME` holds the custom domain.
+- `public/res/resume.pdf` keeps the old résumé URL working.

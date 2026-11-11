@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getProjects } from '../../lib/content';
+
+const projects = await getProjects();
+---
+
+<Base
+  title="Projects"
+  description="Selected projects and write-ups."
+  noindex={projects.length === 0}
+>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="label">Projects</p>
+      <h1>Projects</h1>
+      <p class="lede">Selected projects, with notes on how they were built.</p>
+    </header>
+
+    {
+      projects.length > 0 ? (
+        <ul class="entries">
+          {projects.map((project) => (
+            <li class="entry">
+              <p class="label">{project.data.year}</p>
+              <div class="entry__body">
+                <h2 class="entry__title">
+                  <a href={`/projects/${project.id}`}>{project.data.title}</a>
+                  {!project.data.published && <span class="draft-flag">Hidden</span>}
+                </h2>
+                <p>{project.data.summary}</p>
+                {project.data.role && <p class="muted role">{project.data.role}</p>}
+                {project.data.stack.length > 0 && (
+                  <ul class="chips">
+                    {project.data.stack.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="muted empty">No projects to show yet. Check back soon.</p>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .empty {
+    padding-bottom: 4rem;
+  }
+
+  .role {
+    font-size: 0.95rem;
+  }
+</style>

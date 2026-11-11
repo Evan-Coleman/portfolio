@@ -1,0 +1,103 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { site } from '../../data/site';
+import { getPosts, formatDate } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, description, date, updated, tags } = post.data;
+const url = new URL(`/blog/${post.id}/`, site.url).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description,
+  datePublished: date.toISOString(),
+  ...(updated && { dateModified: updated.toISOString() }),
+  author: { '@type': 'Person', name: site.name, url: site.url },
+  url,
+};
+---
+
+<Base title={title} description={description} type="article" schema={schema}>
+  <div class="wrap">
+    <header class="post-head">
+      <p><a class="arrow-back" href="/blog">← Writing</a></p>
+      <p class="label meta">
+        {formatDate(date)}{updated && ` · Updated ${formatDate(updated)}`}
+      </p>
+      <h1>{title}</h1>
+      <p class="lede">{description}</p>
+    </header>
+
+    <article class="prose">
+      <Content />
+    </article>
+
+    {
+      tags.length > 0 && (
+        <ul class="chips tags" aria-label="Tags">
+          {tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      )
+    }
+
+    <p class="foot muted">
+      Questions or thoughts? <a href={`mailto:${site.email}`}>Reply by email</a>.
+    </p>
+  </div>
+</Base>
+
+<style>
+  .post-head {
+    padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem);
+  }
+
+  .arrow-back {
+    font-size: var(--step--1);
+    text-decoration: none;
+    color: var(--ink-2);
+  }
+
+  .arrow-back:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    margin-top: 2rem;
+  }
+
+  h1 {
+    margin-top: 0.75rem;
+    max-width: 22ch;
+    font-size: var(--step-3);
+    font-weight: 380;
+    line-height: 1.06;
+    letter-spacing: -0.028em;
+  }
+
+  .post-head .lede {
+    margin-top: 1.25rem;
+  }
+
+  .tags {
+    margin-top: 3rem;
+  }
+
+  .foot {
+    margin-top: 2.5rem;
+    padding-block: 1.5rem 4rem;
+    border-top: 1px solid var(--rule);
+    max-width: var(--measure);
+    font-size: 0.95rem;
+  }
+</style>

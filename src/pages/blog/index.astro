@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts, formatDate } from '../../lib/content';
+
+const posts = await getPosts();
+---
+
+<Base
+  title="Writing"
+  description="Notes on software, work and life."
+  noindex={posts.length === 0}
+>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="label">Writing</p>
+      <h1>Writing</h1>
+      <p class="lede">This is where notes on software, work and life go.</p>
+    </header>
+
+    {
+      posts.length > 0 ? (
+        <ul class="entries">
+          {posts.map((post) => (
+            <li class="entry">
+              <p class="label">{formatDate(post.data.date)}</p>
+              <div class="entry__body">
+                <h2 class="entry__title">
+                  <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                  {post.data.draft && <span class="draft-flag">Draft</span>}
+                </h2>
+                <p>{post.data.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="muted empty">Nothing here yet. Check back soon.</p>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .empty {
+    padding-bottom: 4rem;
+  }
+</style>
