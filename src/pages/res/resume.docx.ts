@@ -94,7 +94,7 @@ export const GET: APIRoute = async () => {
                   (p) =>
                     new Paragraph({
                       spacing: LINE,
-                      children: [t(p.name, { bold: true }), t(`${p.link ? ' (link)' : ''} – ${p.detail}`)],
+                      children: [t(p.name, { bold: true }), t(`${p.link ? ` (${p.link})` : ''} – ${p.detail}`)],
                     }),
                 ),
               ]

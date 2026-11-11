@@ -44,7 +44,7 @@ export const GET: APIRoute = () => {
   if (sideProjects.length) {
     out.push('PROJECTS');
     for (const p of sideProjects) {
-      out.push(...wrap(`${p.name}${p.link ? ' (link)' : ''} - ${p.detail}`, COLS, '', '  '));
+      out.push(...wrap(`${p.name}${p.link ? ` (${p.link})` : ''} - ${p.detail}`, COLS, '', '  '));
     }
     out.push('');
   }

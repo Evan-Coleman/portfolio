@@ -252,7 +252,7 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
     }
 
     .head {
-      padding-block: 0 0.4rem;
+      padding-block: 0 0.2rem;
     }
 
     h1 {
@@ -266,20 +266,20 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 
     .summary {
       font-size: 9pt;
-      line-height: 1.3;
+      line-height: 1.25;
     }
 
     .contact {
-      margin-top: 0.5rem;
+      margin-top: 0.3rem;
     }
 
     .section {
-      padding-block: 0.3rem;
-      gap: 0.1rem;
+      padding-block: 0.15rem;
+      gap: 0;
     }
 
     .roles {
-      gap: 0.35rem;
+      gap: 0.2rem;
     }
 
     .role {
@@ -291,14 +291,14 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
     }
 
     .role__list {
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
       max-width: none;
       font-size: 9pt;
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     .role__list li + li {
-      margin-top: 0.1em;
+      margin-top: 0.05em;
     }
 
     .role__head {
@@ -334,7 +334,7 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 
     .projects .muted {
       margin-top: 0;
-      line-height: 1.25;
+      line-height: 1.2;
     }
 
     .skills,
@@ -354,6 +354,8 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
     /* Keep a section label with the content under it. */
     .section > .label {
       break-after: avoid;
+      padding-top: 0;
+      line-height: 1.3;
     }
 
     .section:has(.skills),
@@ -363,7 +365,7 @@ const bare = (url: string) => url.replace(/^https?:\/\/(www\.)?/, '').replace(/\
 
     /* Skills as compact "label  items" rows. */
     .skills {
-      gap: 0.1rem;
+      gap: 0.05rem;
     }
 
     .skills > div {

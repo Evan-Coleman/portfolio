@@ -69,7 +69,7 @@ export const GET: APIRoute = async () => {
     heading('Projects');
     for (const p of sideProjects) {
       doc.font(B).fontSize(BODY).text(p.name, left, doc.y, { width, continued: true, lineGap: GAP });
-      doc.font(R).text(`${p.link ? ' (link)' : ''} – ${p.detail}`);
+      doc.font(R).text(`${p.link ? ` (${p.link})` : ''} – ${p.detail}`);
     }
   }
 
