@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../lib/content';
+
+interface Props {
+  posts: CollectionEntry<'posts'>[];
+  /** Heading level for each post title: h3 inside a labelled section, h2 on the index page. */
+  level?: 'h2' | 'h3';
+}
+
+const { posts, level: Title = 'h3' } = Astro.props;
+---
+
+<ul class="entries">
+  {
+    posts.map((post) => (
+      <li class="entry">
+        <div class="entry__head">
+          <Title class="entry__title">
+            <a href={`/blog/${post.id}`}>{post.data.title}</a>
+            {post.data.draft && <span class="draft-flag">Draft</span>}
+          </Title>
+          <time class="entry__date" datetime={post.data.date.toISOString().slice(0, 10)}>
+            {formatDate(post.data.date)}
+          </time>
+        </div>
+        <p class="entry__text">{post.data.description}</p>
+      </li>
+    ))
+  }
+</ul>

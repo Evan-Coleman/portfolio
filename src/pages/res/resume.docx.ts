@@ -3,41 +3,89 @@ import {
   AlignmentType,
   BorderStyle,
   Document,
+  HeadingLevel,
   LevelFormat,
+  LineRuleType,
   Packer,
   Paragraph,
+  Tab,
   TabStopType,
   TextRun,
 } from 'docx';
-import { headline, summary, roles, skills, sideProjects, education, monthRange } from '../../data/resume';
-import { contactParts, docTitle, docAuthor, roleDetail, educationLine } from '../../lib/resume-export';
+import { headline, summary, roles, skills, sideProjects, education } from '../../data/resume';
+import {
+  SEP,
+  authorizationParts,
+  contactParts,
+  dateRange,
+  docAuthor,
+  docKeywords,
+  docSubject,
+  docTitle,
+  educationLine,
+  roleDetail,
+} from '../../lib/resume-export';
 
+// Built for résumé parsers first: one column, no tables or text boxes, real Word styles
+// (Title, Heading 1, Heading 2, List Paragraph) and plain-text contact details.
 const FONT = 'Arial';
 const BODY = 19; // half-points (9.5pt)
-const WIDTH = 12240 - 2 * 864; // Letter minus 0.6in margins, in twips
-const t = (text: string, o: Record<string, unknown> = {}) => new TextRun({ text, font: FONT, size: BODY, ...o });
-const LINE = { line: 240 };
+// 0.575in in twips: a hair narrower than the PDF's margin, so a line that fits there cannot
+// wrap here when Word measures a word a fraction wider.
+const MARGIN = 828;
+const WIDTH = 12240 - 2 * MARGIN;
+// Exact line heights, so Word, LibreOffice and Google Docs all break the page in the same place.
+const exact = (points: number) => ({ line: points * 20, lineRule: LineRuleType.EXACT });
+const LINE = exact(11.5);
+const BLACK = '000000';
 
-const heading = (text: string) =>
-  new Paragraph({
-    spacing: { before: 100, after: 40, ...LINE },
-    keepNext: true,
-    border: { bottom: { style: BorderStyle.SINGLE, size: 6, space: 1, color: '000000' } },
-    children: [t(text.toUpperCase(), { bold: true, size: 22 })],
-  });
+const t = (text: string, o: Record<string, unknown> = {}) => new TextRun({ text, ...o });
 
-const tabbed = (children: TextRun[], right: string, before = 0) =>
+const centered = (text: string, o: Record<string, unknown> = {}) =>
+  new Paragraph({ alignment: AlignmentType.CENTER, children: [t(text, o)] });
+
+const heading = (text: string) => new Paragraph({ heading: HeadingLevel.HEADING_1, children: [t(text.toUpperCase())] });
+
+/** Left text with a right-aligned date on the same line, by tab stop (no table). */
+const dated = (left: TextRun, date: string, options: Record<string, unknown> = {}) =>
   new Paragraph({
-    spacing: { before, ...LINE },
     tabStops: [{ type: TabStopType.RIGHT, position: WIDTH }],
-    children: [...children, t(`\t${right}`)],
+    children: [left, new TextRun({ children: [new Tab(), date], bold: false })],
+    ...options,
   });
 
 export const GET: APIRoute = async () => {
   const doc = new Document({
     title: docTitle,
+    subject: docSubject,
     creator: docAuthor,
-    styles: { default: { document: { run: { font: FONT, size: BODY } } } },
+    lastModifiedBy: docAuthor,
+    keywords: docKeywords,
+    styles: {
+      default: {
+        document: {
+          run: { font: FONT, size: BODY, color: BLACK, language: { value: 'en-US' } },
+          paragraph: { spacing: LINE },
+        },
+        title: {
+          run: { font: FONT, size: 40, bold: true, color: BLACK },
+          paragraph: { alignment: AlignmentType.CENTER, spacing: exact(24) },
+        },
+        heading1: {
+          run: { font: FONT, size: 22, bold: true, color: BLACK },
+          paragraph: {
+            spacing: { before: 140, after: 60, ...exact(13) },
+            keepNext: true,
+            border: { bottom: { style: BorderStyle.SINGLE, size: 6, space: 1, color: BLACK } },
+          },
+        },
+        heading2: {
+          run: { font: FONT, size: BODY, bold: true, color: BLACK },
+          paragraph: { spacing: LINE, keepNext: true },
+        },
+        listParagraph: { run: { font: FONT, size: BODY, color: BLACK }, paragraph: { spacing: LINE } },
+      },
+    },
     numbering: {
       config: [
         {
@@ -48,7 +96,7 @@ export const GET: APIRoute = async () => {
               format: LevelFormat.BULLET,
               text: '•',
               alignment: AlignmentType.LEFT,
-              style: { paragraph: { indent: { left: 360, hanging: 220 } } },
+              style: { paragraph: { indent: { left: 320, hanging: 240 } } },
             },
           ],
         },
@@ -59,33 +107,42 @@ export const GET: APIRoute = async () => {
         properties: {
           page: {
             size: { width: 12240, height: 15840 },
-            margin: { top: 864, bottom: 864, left: 864, right: 864 },
+            margin: { top: MARGIN, bottom: MARGIN, left: MARGIN, right: MARGIN },
           },
         },
         children: [
-          new Paragraph({ alignment: AlignmentType.CENTER, children: [t(docAuthor, { bold: true, size: 40 })] }),
-          new Paragraph({ alignment: AlignmentType.CENTER, children: [t(headline, { bold: true, size: 21 })] }),
-          new Paragraph({ alignment: AlignmentType.CENTER, children: [t(contactParts().join(' | '))] }),
+          new Paragraph({ heading: HeadingLevel.TITLE, children: [t(docAuthor)] }),
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: exact(13),
+            children: [t(headline, { bold: true, size: 21 })],
+          }),
+          centered(
+            contactParts()
+              .map((part) => part.text)
+              .join(SEP),
+          ),
+          centered(authorizationParts.join(SEP)),
 
           heading('Summary'),
-          new Paragraph({ spacing: LINE, children: [t(summary)] }),
-
-          heading('Technical Skills'),
-          ...skills.map(
-            (g) => new Paragraph({ spacing: LINE, children: [t(`${g.label}: `, { bold: true }), t(g.items.join(', '))] }),
-          ),
+          new Paragraph({ children: [t(summary)] }),
 
           heading('Experience'),
           ...roles.flatMap((role, i) => [
-            tabbed(
-              [t(role.title, { bold: true }), t(' | '), t(roleDetail(role), { italics: true })],
-              monthRange(role),
-              i ? 60 : 0,
-            ),
+            dated(t(role.title), dateRange(role), {
+              heading: HeadingLevel.HEADING_2,
+              spacing: { before: i ? 80 : 0, ...LINE },
+            }),
+            new Paragraph({ keepNext: true, children: [t(roleDetail(role), { italics: true })] }),
             ...role.highlights.map(
-              (h) => new Paragraph({ numbering: { reference: 'bullets', level: 0 }, spacing: LINE, children: [t(h)] }),
+              (h) => new Paragraph({ numbering: { reference: 'bullets', level: 0 }, children: [t(h)] }),
             ),
           ]),
+
+          heading('Technical Skills'),
+          ...skills.map(
+            (g) => new Paragraph({ children: [t(`${g.label}: `, { bold: true }), t(g.items.join(', '))] }),
+          ),
 
           ...(sideProjects.length
             ? [
@@ -93,7 +150,6 @@ export const GET: APIRoute = async () => {
                 ...sideProjects.map(
                   (p) =>
                     new Paragraph({
-                      spacing: LINE,
                       children: [t(p.name, { bold: true }), t(`${p.link ? ` (${p.link})` : ''} – ${p.detail}`)],
                     }),
                 ),
@@ -101,7 +157,7 @@ export const GET: APIRoute = async () => {
             : []),
 
           heading('Education'),
-          tabbed([t(educationLine())], education.year),
+          dated(t(educationLine()), education.year),
         ],
       },
     ],

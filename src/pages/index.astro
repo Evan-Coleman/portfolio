@@ -1,8 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
+import ProjectList from '../components/ProjectList.astro';
+import PostList from '../components/PostList.astro';
 import { site } from '../data/site';
 import { roles, yearRange } from '../data/resume';
-import { getPosts, getProjects, formatDate } from '../lib/content';
+import { getPosts, getProjects } from '../lib/content';
 
 const [posts, projects] = await Promise.all([getPosts(), getProjects()]);
 const latestPosts = posts.slice(0, 3);
@@ -10,67 +12,65 @@ const latestPosts = posts.slice(0, 3);
 const facts = [
   { term: 'Now', detail: `${roles[0].title}, ${roles[0].company}` },
   { term: 'Scale', detail: '9 services, about 30 million API requests a day' },
-  { term: 'Stack', detail: 'Java · Spring Boot · AWS · Kubernetes' },
+  { term: 'Stack', detail: 'Java · Spring Boot · PostgreSQL · AWS · Kubernetes' },
   { term: 'Lately', detail: 'A CLI that cut team onboarding from months to hours' },
+  { term: 'Location', detail: site.location },
+  { term: 'Citizenship', detail: site.availability },
 ];
 ---
 
 <Base>
-  <section class="hero wrap">
-    <div class="hero__main">
-      <p class="label">{site.name} · {site.role}</p>
-      <h1>I lead the team behind the services <em>everyone else</em> builds on.</h1>
+  <div class="wrap">
+    <header class="hero">
+      <h1>I lead the team behind the services everyone else builds on.</h1>
       <p class="lede">
         I’m Evan, a lead software engineer at State Farm. I built nine backend services from the ground up for the
         company’s move off legacy systems, and I now lead the eight engineers who run them in production at about 30
         million API requests a day. I care about services that stay fast under load, deploys that are uneventful, and
         engineers who get better because of the team they’re on.
       </p>
-      <div class="hero__actions">
+      <p class="actions">
         <a class="btn" href="/resume">Read my résumé</a>
-        <a class="btn btn--ghost" href={`mailto:${site.email}`}>{site.email}</a>
-      </div>
-    </div>
+        <a href={`mailto:${site.email}`}>{site.email}</a>
+        <a href={site.links.linkedin} rel="me noopener">LinkedIn</a>
+        <a href={site.links.github} rel="me noopener">GitHub</a>
+      </p>
+    </header>
 
-    <aside class="glance" aria-label="At a glance">
-      <p class="status"><span class="status__dot" aria-hidden="true"></span>{site.availability}</p>
-      <dl>
+    <section aria-label="At a glance">
+      <dl class="facts">
         {
           facts.map((fact) => (
             <div>
-              <dt class="label">{fact.term}</dt>
+              <dt>{fact.term}</dt>
               <dd>{fact.detail}</dd>
             </div>
           ))
         }
       </dl>
-    </aside>
-  </section>
+    </section>
 
-  <div class="wrap">
     <section class="section" id="experience" aria-labelledby="experience-label">
       <h2 class="label" id="experience-label">Experience</h2>
       <div>
-        <ol class="roles" role="list">
+        <ol class="entries" role="list">
           {
             roles.map((role) => (
-              <li class="role">
-                <div class="role__head">
-                  <h3>
-                    {role.title}
-                    <span class="role__company">
-                      {role.company}
-                      {role.note && ` (${role.note})`}
-                    </span>
-                  </h3>
-                  <p class="label">{yearRange(role)}</p>
+              <li class="entry">
+                <div class="entry__head">
+                  <h3 class="entry__title">{role.title}</h3>
+                  <p class="entry__date">{yearRange(role)}</p>
                 </div>
-                <p class="role__summary">{role.summary}</p>
+                <p class="entry__sub">
+                  {role.company}
+                  {role.note && ` (${role.note})`}
+                </p>
+                <p class="entry__text">{role.summary}</p>
               </li>
             ))
           }
         </ol>
-        <p class="section__more"><a class="arrow-link" href="/resume">Full résumé</a></p>
+        <p class="section__more"><a href="/resume">Full résumé</a></p>
       </div>
     </section>
 
@@ -78,29 +78,7 @@ const facts = [
       projects.length > 0 && (
         <section class="section" id="projects" aria-labelledby="projects-label">
           <h2 class="label" id="projects-label">Projects</h2>
-          <div>
-            <ul class="entries">
-              {projects.map((project) => (
-                <li class="entry">
-                  <p class="label">{project.data.year}</p>
-                  <div class="entry__body">
-                    <h3 class="entry__title">
-                      <a href={`/projects/${project.id}`}>{project.data.title}</a>
-                      {!project.data.published && <span class="draft-flag">Hidden</span>}
-                    </h3>
-                    <p>{project.data.summary}</p>
-                    {project.data.stack.length > 0 && (
-                      <ul class="chips">
-                        {project.data.stack.map((item) => (
-                          <li>{item}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ProjectList projects={projects} />
         </section>
       )
     }
@@ -110,25 +88,10 @@ const facts = [
         <section class="section" id="writing" aria-labelledby="writing-label">
           <h2 class="label" id="writing-label">Writing</h2>
           <div>
-            <ul class="entries">
-              {latestPosts.map((post) => (
-                <li class="entry">
-                  <p class="label">{formatDate(post.data.date)}</p>
-                  <div class="entry__body">
-                    <h3 class="entry__title">
-                      <a href={`/blog/${post.id}`}>{post.data.title}</a>
-                      {post.data.draft && <span class="draft-flag">Draft</span>}
-                    </h3>
-                    <p>{post.data.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            <PostList posts={latestPosts} />
             {posts.length > latestPosts.length && (
               <p class="section__more">
-                <a class="arrow-link" href="/blog">
-                  All writing
-                </a>
+                <a href="/blog">All writing</a>
               </p>
             )}
           </div>
@@ -153,14 +116,11 @@ const facts = [
       </div>
     </section>
 
-    <section class="section contact" id="contact" aria-labelledby="contact-label">
+    <section class="section" id="contact" aria-labelledby="contact-label">
       <h2 class="label" id="contact-label">Contact</h2>
       <div>
-        <p class="contact__line">
-          I’m always interested in hearing about new opportunities.{' '}
-          <a href={`mailto:${site.email}`}>Say hello.</a>
-        </p>
-        <ul class="contact__links" role="list">
+        <p>I’m always interested in hearing about new opportunities.</p>
+        <ul class="dotted contact__links">
           <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
           <li><a href={site.links.linkedin} rel="me noopener">LinkedIn</a></li>
           <li><a href={site.links.github} rel="me noopener">GitHub</a></li>
@@ -171,179 +131,46 @@ const facts = [
 </Base>
 
 <style>
-  /* ---------- Hero ---------- */
-
   .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 3rem;
-    padding-block: clamp(3rem, 9vw, 6.5rem) clamp(3rem, 8vw, 5.5rem);
-  }
-
-  @media (min-width: 62rem) {
-    .hero {
-      grid-template-columns: minmax(0, 1fr) 19rem;
-      gap: 4rem;
-      align-items: end;
-    }
+    padding-block: 2.5rem 2.25rem;
   }
 
   h1 {
-    margin-top: 1.25rem;
-    max-width: 15ch;
-    font-size: var(--step-4);
-    font-weight: 380;
-    line-height: 1;
-    letter-spacing: -0.035em;
+    max-width: 20em;
+    font-size: var(--text-2xl);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
   }
 
-  h1 em {
-    color: var(--accent);
-    font-weight: 340;
-  }
+  @media (min-width: 44rem) {
+    .hero {
+      padding-block: 4rem 2.5rem;
+    }
 
-  .hero .lede {
-    margin-top: 1.75rem;
-  }
-
-  .hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2.25rem;
-  }
-
-  /* ---------- At a glance ---------- */
-
-  .glance {
-    padding: 1.5rem;
-    border: 1px solid var(--rule);
-    border-radius: calc(var(--radius) + 4px);
-    background: var(--surface);
-  }
-
-  .status {
-    display: flex;
-    align-items: baseline;
-    gap: 0.6rem;
-    padding-bottom: 1.1rem;
-    border-bottom: 1px solid var(--rule);
-    font-size: 0.95rem;
-    font-weight: 500;
-    line-height: 1.4;
-  }
-
-  .status__dot {
-    flex: none;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-radius: 50%;
-    background: var(--live);
-    box-shadow: 0 0 0 4px color-mix(in srgb, var(--live) 18%, transparent);
-    transform: translateY(-0.08em);
-  }
-
-  dl {
-    display: grid;
-    gap: 0.9rem;
-    margin: 1.1rem 0 0;
-  }
-
-  dd {
-    margin: 0.1rem 0 0;
-    font-size: 0.95rem;
-    line-height: 1.45;
-  }
-
-  @media (min-width: 36rem) and (max-width: 61.99rem) {
-    dl {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 2rem;
+    h1 {
+      font-size: var(--text-3xl);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
     }
   }
 
-  /* ---------- Experience ---------- */
-
-  .roles {
-    display: grid;
-    gap: 2.25rem;
+  .lede {
+    margin-top: 1rem;
   }
 
-  /* Dates sit above the title on small screens, to its right on wide ones. */
-  .role__head {
-    display: grid;
-    gap: 0.4rem 1.5rem;
+  .actions {
+    margin-top: 1.5rem;
   }
-
-  .role__head .label {
-    order: -1;
-  }
-
-  @media (min-width: 40rem) {
-    .role__head {
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: baseline;
-    }
-
-    .role__head .label {
-      order: 0;
-    }
-  }
-
-  .role h3 {
-    font-size: var(--step-2);
-    letter-spacing: -0.02em;
-  }
-
-  .role__company {
-    display: block;
-    margin-top: 0.3rem;
-    font-family: var(--font-text);
-    font-size: var(--step-0);
-    font-weight: 500;
-    letter-spacing: 0;
-    color: var(--ink-2);
-  }
-
-  .role__summary {
-    margin-top: 0.75rem;
-    max-width: var(--measure);
-    color: var(--ink-2);
-  }
-
-  /* ---------- About ---------- */
 
   .about {
     max-width: var(--measure);
-    font-size: var(--step-1);
-    line-height: 1.6;
   }
 
   .about p + p {
-    margin-top: 1em;
-    color: var(--ink-2);
-  }
-
-  /* ---------- Contact ---------- */
-
-  .contact__line {
-    max-width: 22ch;
-    font-family: var(--font-display);
-    font-size: var(--step-3);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-  }
-
-  .contact__line a {
-    color: var(--accent);
-    font-style: italic;
-    text-decoration-thickness: 2px;
+    margin-top: 0.85em;
   }
 
   .contact__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.75rem;
-    margin-top: 2rem;
+    margin-top: 0.4rem;
   }
 </style>

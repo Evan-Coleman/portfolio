@@ -16,121 +16,103 @@ const { title, summary, role, year, stack, links, cover, gallery } = project.dat
 
 <Base title={title} description={summary} noindex={!project.data.published}>
   <div class="wrap">
-    <header class="project-head">
-      <p><a class="arrow-back" href="/projects">← Projects</a></p>
-      <p class="label meta">{year}{role && ` · ${role}`}</p>
+    <header class="page-head">
       <h1>{title}</h1>
       <p class="lede">{summary}</p>
-
-      {
-        links.length > 0 && (
-          <p class="links">
-            {links.map((link) => (
-              <a class="btn btn--ghost" href={link.href} rel="noopener">
-                {link.label}
-              </a>
-            ))}
-          </p>
-        )
-      }
-
-      {
-        stack.length > 0 && (
-          <ul class="chips stack" aria-label="Stack">
-            {stack.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        )
-      }
     </header>
 
+    <dl class="facts">
+      {
+        role && (
+          <div>
+            <dt>Status</dt>
+            <dd>{role}</dd>
+          </div>
+        )
+      }
+      <div>
+        <dt>Year</dt>
+        <dd>{year}</dd>
+      </div>
+      {
+        stack.length > 0 && (
+          <div>
+            <dt>Stack</dt>
+            <dd>
+              <ul class="dotted">
+                {stack.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        )
+      }
+      {
+        links.length > 0 && (
+          <div>
+            <dt>Links</dt>
+            <dd>
+              <ul class="dotted">
+                {links.map((link) => (
+                  <li>
+                    <a href={link.href} rel="noopener">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        )
+      }
+    </dl>
+
+    <div class="body">
+      {
+        cover && (
+          <Image
+            class="shot cover"
+            src={cover.src}
+            alt={cover.alt}
+            widths={[736, 1472]}
+            sizes="(min-width: 50rem) 736px, calc(100vw - 2.5rem)"
+            loading="eager"
+          />
+        )
+      }
+
+      <article class="prose">
+        <Content />
+      </article>
+    </div>
+
     {
-      (cover || gallery.length > 0) && (
-        <div class="shots">
-          {cover && (
-            <Image
-              class="shot cover"
-              src={cover.src}
-              alt={cover.alt}
-              widths={[960, 1920]}
-              sizes="(min-width: 1168px) 1088px, calc(100vw - 2.5rem)"
-              loading="eager"
-            />
-          )}
-          {gallery.length > 0 && (
-            <div class="gallery" role="group" tabindex="0" aria-label={`${title} screenshots`}>
-              {gallery.map((item) => (
-                <Image
-                  class="shot"
-                  src={item.src}
-                  alt={item.alt}
-                  widths={[440, 880]}
-                  sizes="(min-width: 40rem) 355px, max(200px, 62vw)"
-                  loading="lazy"
-                />
-              ))}
-            </div>
-          )}
-        </div>
+      gallery.length > 0 && (
+        <section class="shots" aria-labelledby="shots-label">
+          <h2 class="label" id="shots-label">Screenshots</h2>
+          <div class="gallery" role="group" tabindex="0" aria-label={`${title} screenshots`}>
+            {gallery.map((item) => (
+              <Image
+                class="shot"
+                src={item.src}
+                alt={item.alt}
+                widths={[176, 352, 528]}
+                sizes="(min-width: 40rem) 175px, 44vw"
+                loading="lazy"
+              />
+            ))}
+          </div>
+        </section>
       )
     }
-
-    <article class="prose">
-      <Content />
-    </article>
-    <div class="end"></div>
   </div>
 </Base>
 
 <style>
-  .project-head {
-    padding-block: clamp(3rem, 8vw, 5rem) clamp(2rem, 5vw, 3rem);
-  }
-
-  .arrow-back {
-    font-size: var(--step--1);
-    text-decoration: none;
-    color: var(--ink-2);
-  }
-
-  .arrow-back:hover {
-    color: var(--accent);
-  }
-
-  .meta {
-    margin-top: 2rem;
-  }
-
-  h1 {
-    margin-top: 0.75rem;
-    max-width: 22ch;
-    font-size: var(--step-3);
-    font-weight: 380;
-    line-height: 1.06;
-    letter-spacing: -0.028em;
-  }
-
-  .project-head .lede {
-    margin-top: 1.25rem;
-  }
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.75rem;
-  }
-
-  .stack {
-    margin-top: 1.5rem;
-  }
-
-  .shots {
-    display: grid;
-    gap: 12px;
-    margin-top: clamp(0.5rem, 2vw, 1rem);
-    margin-bottom: clamp(2.5rem, 6vw, 3rem);
+  .body {
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
   }
 
   /* Image classes are applied to elements rendered by <Image>, so they need :global-free
@@ -140,35 +122,44 @@ const { title, summary, role, year, stack, links, cover, gallery } = project.dat
     width: 100%;
     height: auto;
     border: 1px solid var(--rule);
-    border-radius: 14px;
+    border-radius: var(--radius);
   }
 
+  .cover {
+    margin-bottom: 2rem;
+  }
+
+  .shots {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* Four across, so three panels and four panels come out the same size. */
   .gallery {
-    display: flex;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
     min-width: 0;
   }
 
-  .gallery .shot {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
+  /* Small screens: one row that scrolls sideways and runs off the right edge of the screen. */
   @media (max-width: 39.99rem) {
     .gallery {
+      display: flex;
       overflow-x: auto;
+      margin-right: calc(-1 * var(--gutter));
+      padding-right: var(--gutter);
       scroll-snap-type: x mandatory;
       overscroll-behavior-x: contain;
     }
 
     .gallery .shot {
-      flex: 0 0 max(200px, 62vw);
-      width: max(200px, 62vw);
+      flex: 0 0 max(9.5rem, 44vw);
+      width: max(9.5rem, 44vw);
       scroll-snap-align: start;
     }
-  }
-
-  .end {
-    padding-bottom: 4rem;
   }
 </style>

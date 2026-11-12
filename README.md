@@ -50,6 +50,6 @@ Cloudflare Pages also works: build command `npm run build`, output directory `di
 
 ## Résumé downloads
 
-`/res/resume.pdf`, `/res/resume.docx` and `/res/resume.txt` are generated from `src/data/resume.ts` at build time, so they always match the `/resume` page. The shared code is in `src/lib/resume-export.ts`.
+`/res/resume.pdf`, `/res/resume.docx` and `/res/resume.txt` are generated from `src/data/resume.ts` at build time, so they always match the `/resume` page. The shared code is in `src/lib/resume-export.ts`. The same three files are also served as `/res/Evan-Coleman-Resume.pdf`, `.docx` and `.txt`, which is what the résumé page links to. The build fails if the PDF runs past one page.
 
 To make a private copy with a phone number and personal email, run `RESUME_PHONE="..." RESUME_EMAIL="..." npm run build` locally and take the files from `dist/res/`. Never commit those files, and never set these variables in CI.

@@ -1,0 +1,36 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  projects: CollectionEntry<'projects'>[];
+  /** Heading level for each project name: h3 inside a labelled section, h2 on the index page. */
+  level?: 'h2' | 'h3';
+}
+
+const { projects, level: Title = 'h3' } = Astro.props;
+---
+
+<ul class="entries">
+  {
+    projects.map((project) => (
+      <li class="entry">
+        <div class="entry__head">
+          <Title class="entry__title">
+            <a href={`/projects/${project.id}`}>{project.data.title}</a>
+            {!project.data.published && <span class="draft-flag">Hidden</span>}
+          </Title>
+          <p class="entry__date">{project.data.year}</p>
+        </div>
+        {project.data.role && <p class="entry__sub">{project.data.role}</p>}
+        <p class="entry__text">{project.data.summary}</p>
+        {project.data.stack.length > 0 && (
+          <ul class="stack" aria-label="Stack">
+            {project.data.stack.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        )}
+      </li>
+    ))
+  }
+</ul>
